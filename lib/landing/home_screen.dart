@@ -42,14 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(32)),
                   child: const Center(
                     child: Text(
-                      'Step 1 of 3',
+                      'Step 2 of 3',
                       style: kSmallBtnText,
                     ),
                   ),
                 ),
                 const SizedBox(
                   width: 382,
-                  child: Text('Create Your Account.', style: kHeaderText),
+                  child: Text('Location Information.', style: kHeaderText),
                 ),
                 const SizedBox(height: 15),
                 const SizedBox(
@@ -64,35 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('First Name', style: kFormLabelText),
-                                  SizedBox(height: 10),
-                                  CustomInputField(
-                                    hintText: 'Enter your first name',
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Last Name', style: kFormLabelText),
-                                  SizedBox(height: 10),
-                                  CustomInputField(
-                                    hintText: 'Enter your last name',
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
                         //Email Address
                         SizedBox(height: 10),
                         Text('Email Address', style: kFormLabelText),
