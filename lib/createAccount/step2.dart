@@ -164,7 +164,7 @@ class _StepTwoState extends State<StepTwo> {
                 const SizedBox(
                     width: 382,
                     child: Text(
-                      'We want to recommend services based on your location and also for your deliveries',
+                      'We want to recommend services based on \nyour location and also for your deliveries.',
                       style: kSubHeaderText,
                     )),
                 const SizedBox(height: 20),
