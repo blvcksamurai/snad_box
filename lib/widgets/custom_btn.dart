@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
+  final String text;
+  double? iconSize;
+  CustomButton({
     super.key,
+    this.iconSize,
+    required this.text,
   });
 
   @override
@@ -14,21 +18,25 @@ class CustomButton extends StatelessWidget {
       height: 64,
       decoration: BoxDecoration(
           color: kButtonColor, borderRadius: BorderRadius.circular(80)),
-      child: const Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Get Started  ',
-            style: TextStyle(
+            text,
+            style: const TextStyle(
               color: Color(0xFF0A0A0A),
               fontFamily: 'Gsa',
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
-          Icon(Icons.arrow_forward, size: 0),
+          const SizedBox(width: 3),
+          Icon(
+            Icons.arrow_forward,
+            size: iconSize,
+          ),
         ],
       ),
     );

@@ -61,6 +61,13 @@ const kHintText = TextStyle(
   height: 1.50,
 );
 
+const kItemListTextStyle = TextStyle(
+  color: Color(0xFF7D7D7D),
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+  height: 1.33,
+);
+
 // const kTextFieldInput = InputDecoration(
 //     filled: true,
 //     fillColor: Colors.transparent,

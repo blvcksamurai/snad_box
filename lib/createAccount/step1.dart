@@ -54,7 +54,7 @@ class StepOne extends StatelessWidget {
                       style: kSubHeaderText,
                     )),
                 const SizedBox(height: 20),
-                const SizedBox(
+                SizedBox(
                     width: 382,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,21 +65,23 @@ class StepOne extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('First Name', style: kFormLabelText),
-                                  SizedBox(height: 10),
+                                  const Text('First Name',
+                                      style: kFormLabelText),
+                                  const SizedBox(height: 10),
                                   CustomInputField(
                                     hintText: 'Enter your first name',
                                   )
                                 ],
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Last Name', style: kFormLabelText),
-                                  SizedBox(height: 10),
+                                  const Text('Last Name',
+                                      style: kFormLabelText),
+                                  const SizedBox(height: 10),
                                   CustomInputField(
                                     hintText: 'Enter your last name',
                                   )
@@ -89,28 +91,30 @@ class StepOne extends StatelessWidget {
                           ],
                         ),
                         //Email Address
-                        SizedBox(height: 10),
-                        Text('Email Address', style: kFormLabelText),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        const Text('Email Address', style: kFormLabelText),
+                        const SizedBox(height: 10),
                         CustomInputField(hintText: 'Enter your email address'),
                         //Phone Number
-                        SizedBox(height: 10),
-                        Text('Phone Number', style: kFormLabelText),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        const Text('Phone Number', style: kFormLabelText),
+                        const SizedBox(height: 10),
                         CustomInputField(hintText: 'Enter your phone number'),
 
                         //User name
-                        SizedBox(height: 10),
-                        Text('Username', style: kFormLabelText),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        const Text('Username', style: kFormLabelText),
+                        const SizedBox(height: 10),
                         CustomInputField(hintText: '@starboytins'),
 
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                       ],
                     )),
                 const SizedBox(height: 40), // Add spacing before the button
 
-                const CustomButton(),
+                CustomButton(
+                  text: 'Next',
+                ),
                 SizedBox(
                   width: 382,
                   height: 40,
