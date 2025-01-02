@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snad_box/createAccount/step1.dart';
-import 'package:snad_box/createAccount/step2.dart';
+import 'package:snad_box/landing/home_screen.dart';
 import 'package:snad_box/splash_screen.dart';
 
 void main() {
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const CustomSplashScreen(),
-      home: const StepTwo(),
+      home: const HomeScreen(),
     );
   }
 }
