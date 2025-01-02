@@ -207,18 +207,22 @@ class _StepTwoState extends State<StepTwo> {
                                 color: Colors.transparent),
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                selectedState ?? 'Choose your state',
-                                style: selectedState == null
-                                    ? kHintText
-                                    : const TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.black,
-                                      ),
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  selectedState ?? 'Choose your state',
+                                  style: selectedState == null
+                                      ? kHintText
+                                      : const TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.black,
+                                        ),
+                                ),
+                                const Icon(Iconsax.arrow_down_1,
+                                    color: Colors.black), // Dropdown icon
+                              ],
                             ),
                           ),
                         ),
@@ -253,18 +257,22 @@ class _StepTwoState extends State<StepTwo> {
                                 color: Colors.transparent),
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                selectedLGA ?? 'Choose your LGA',
-                                style: selectedLGA == null
-                                    ? kHintText
-                                    : const TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.black,
-                                      ),
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  selectedLGA ?? 'Choose your LGA',
+                                  style: selectedLGA == null
+                                      ? kHintText
+                                      : const TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.black,
+                                        ),
+                                ),
+                                const Icon(Iconsax.arrow_down_1,
+                                    color: Colors.black), // Dropdown icon
+                              ],
                             ),
                           ),
                         ),
