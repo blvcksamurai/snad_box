@@ -23,8 +23,10 @@ class _StepTwoState extends State<StepTwo> {
     required List<String> items,
     required Function(String) onSelect,
     required String title,
+    String? c_search,
   }) {
     showModalBottomSheet(
+      showDragHandle: true,
       context: context,
       isScrollControlled: true,
       backgroundColor: kBgcolor,
@@ -55,7 +57,7 @@ class _StepTwoState extends State<StepTwo> {
                 return Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.fromLTRB(25, 0, 25, 16),
                       child: Column(
                         children: [
                           Text(
@@ -67,7 +69,7 @@ class _StepTwoState extends State<StepTwo> {
                           ),
                           const SizedBox(height: 10),
                           CustomInputField(
-                            hintText: 'Search',
+                            hintText: 'Search for your $c_search',
                             controller: searchController,
                             onchanged: filterItems,
                             prefixIcon: const Icon(Iconsax.search_normal_1),
@@ -75,7 +77,9 @@ class _StepTwoState extends State<StepTwo> {
                         ],
                       ),
                     ),
-                    const Divider(),
+                    const Divider(
+                      color: Color(0xFFE3E3E3),
+                    ),
                     Expanded(
                       child: filteredItems.isNotEmpty
                           ? ListView.builder(
@@ -84,7 +88,7 @@ class _StepTwoState extends State<StepTwo> {
                               itemBuilder: (context, index) {
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 20),
+                                      horizontal: 25),
                                   child: Column(
                                     children: [
                                       ListTile(
@@ -98,7 +102,9 @@ class _StepTwoState extends State<StepTwo> {
                                         },
                                       ),
                                       if (index < filteredItems.length - 1)
-                                        const Divider(), // Divider between items
+                                        const Divider(
+                                          color: Color(0xFFE3E3E3),
+                                        ), // Divider between items
                                     ],
                                   ),
                                 );
@@ -181,8 +187,9 @@ class _StepTwoState extends State<StepTwo> {
                           onTap: () {
                             _showSearchableBottomSheet(
                               context: context,
+                              c_search: 'state',
                               items: NigerianStatesAndLGA.allStates,
-                              title: 'Select your State',
+                              title: 'Choose your State',
                               onSelect: (state) {
                                 setState(() {
                                   selectedState = state;
@@ -203,7 +210,7 @@ class _StepTwoState extends State<StepTwo> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                selectedState ?? 'Select your state',
+                                selectedState ?? 'Choose your state',
                                 style: selectedState == null
                                     ? kHintText
                                     : const TextStyle(
@@ -228,7 +235,8 @@ class _StepTwoState extends State<StepTwo> {
                                     context: context,
                                     items: NigerianStatesAndLGA.getStateLGAs(
                                         selectedState!),
-                                    title: 'Select your LGA',
+                                    c_search: 'local government',
+                                    title: 'Choose your LGA',
                                     onSelect: (lga) {
                                       setState(() {
                                         selectedLGA = lga;
