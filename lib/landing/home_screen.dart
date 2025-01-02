@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 10),
                         const Text('LGA', style: kFormLabelText),
                         const SizedBox(height: 10),
-// LGA Dropdown
+                        // LGA Dropdown
                         Container(
                           height: 56,
                           decoration: BoxDecoration(
@@ -130,7 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             value: selectedLGA,
                             isExpanded: true,
                             underline: const SizedBox(),
-                            hint: const Text('Select an LGA', style: kHintText),
+                            hint:
+                                const Text('Choose your LGA', style: kHintText),
                             items: selectedState == null
                                 ? [] // Show no items if no state is selected
                                 : [
