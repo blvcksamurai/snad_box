@@ -4,9 +4,11 @@ import '../constants.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
+  IconData? icon;
   double? iconSize;
   CustomButton({
     super.key,
+    this.icon,
     this.iconSize,
     required this.text,
   });
@@ -32,11 +34,14 @@ class CustomButton extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(width: 3),
-          Icon(
-            Icons.arrow_forward,
-            size: iconSize,
-          ),
+          if (icon != null) ...[
+            // Check if icon is not null
+            const SizedBox(width: 3),
+            Icon(
+              icon,
+              size: iconSize,
+            ),
+          ],
         ],
       ),
     );

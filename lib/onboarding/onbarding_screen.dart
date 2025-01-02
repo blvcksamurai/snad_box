@@ -43,6 +43,7 @@ class OnbardingScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   CustomButton(
                     text: 'Get Started',
+                    icon: Icons.arrow_forward,
                     iconSize: 25,
                   ),
                 ],

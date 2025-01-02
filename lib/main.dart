@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:snad_box/createAccount/step1.dart';
+import 'package:snad_box/createAccount/step2.dart';
 import 'package:snad_box/splash_screen.dart';
 
 void main() {
@@ -12,13 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Snad Box',
       theme: ThemeData(
         fontFamily: 'Gsa',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const CustomSplashScreen(),
+      // home: const CustomSplashScreen(),
+      home: const StepTwo(),
     );
   }
 }
