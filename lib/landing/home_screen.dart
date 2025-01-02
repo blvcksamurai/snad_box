@@ -21,9 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  bool? _hasCapitalLetter; // Initially null for default state
-  bool? _isAlphanumeric; // Initially null for default state
-  bool? _isMaxLength; // Initially null for default state
+  bool? _hasCapitalLetter;
+  bool? _isAlphanumeric;
+  bool? _isMaxLength;
   bool _passwordsMatch = false;
 
   void _validatePassword(String password) {
