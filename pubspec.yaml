@@ -40,6 +40,8 @@ dependencies:
   animated_splash_screen: 
   flutter_native_splash: ^2.4.3
   google_fonts: ^6.2.1
+  nigerian_states_and_lga: 
+  
 
 flutter_native_splash:
   color: "#ffffff" # Background color

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:snad_box/constants.dart';
 import 'package:snad_box/widgets/custom_input_field.dart';
+import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
 
 import '../widgets/custom_btn.dart';
 
@@ -13,6 +14,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String? selectedState; // To store the selected state
+  String? selectedLGA; // To store the selected LGA
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,33 +59,97 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                     width: 382,
                     child: Text(
-                      'Let us create your account for you by getting some basic information',
+                      'We want to recommend services based on your location and also for your deliveries',
                       style: kSubHeaderText,
                     )),
                 const SizedBox(height: 20),
-                const SizedBox(
+                SizedBox(
                     width: 382,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        //Email Address
-                        SizedBox(height: 10),
-                        Text('Email Address', style: kFormLabelText),
-                        SizedBox(height: 10),
-                        CustomInputField(hintText: 'Enter your email address'),
-                        //Phone Number
-                        SizedBox(height: 10),
-                        Text('Phone Number', style: kFormLabelText),
-                        SizedBox(height: 10),
-                        CustomInputField(hintText: 'Enter your phone number'),
+                        //Address
+                        const SizedBox(height: 10),
+                        const Text('Address', style: kFormLabelText),
+                        const SizedBox(height: 10),
+                        const CustomInputField(hintText: 'Enter your address'),
+                        //Nigerian State drop down
+                        const SizedBox(height: 10),
+                        const Text('State', style: kFormLabelText),
+                        const SizedBox(height: 10),
 
+                        Container(
+                          height: 56,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                  color: const Color(0xFFE3E3E3), width: 2),
+                              color: Colors.transparent),
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: DropdownButton<String>(
+                            key: const ValueKey('StatesDropdown'),
+                            value: selectedState,
+                            isExpanded: true,
+                            underline:
+                                const SizedBox(), // Removes the default underline
+                            hint: const Text(
+                              'Select your state',
+                              style: kHintText,
+                            ),
+                            items: [
+                              for (var state in NigerianStatesAndLGA.allStates)
+                                DropdownMenuItem(
+                                  value: state,
+                                  child: Text(state),
+                                ),
+                            ],
+                            onChanged: (value) {
+                              setState(() {
+                                selectedState = value;
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 10),
                         //User name
-                        SizedBox(height: 10),
-                        Text('Username', style: kFormLabelText),
-                        SizedBox(height: 10),
-                        CustomInputField(hintText: '@starboytins'),
-
-                        SizedBox(height: 20),
+                        const SizedBox(height: 10),
+                        const Text('LGA', style: kFormLabelText),
+                        const SizedBox(height: 10),
+// LGA Dropdown
+                        Container(
+                          height: 56,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                                color: const Color(0xFFE3E3E3), width: 2),
+                            color: Colors.transparent,
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: DropdownButton<String>(
+                            key: const ValueKey('LGADropdown'),
+                            value: selectedLGA,
+                            isExpanded: true,
+                            underline: const SizedBox(),
+                            hint: const Text('Select an LGA', style: kHintText),
+                            items: selectedState == null
+                                ? [] // Show no items if no state is selected
+                                : [
+                                    for (var lga
+                                        in NigerianStatesAndLGA.getStateLGAs(
+                                            selectedState!))
+                                      DropdownMenuItem(
+                                        value: lga,
+                                        child: Text(lga),
+                                      ),
+                                  ],
+                            onChanged: (value) {
+                              setState(() {
+                                selectedLGA = value;
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 20),
                       ],
                     )),
                 const SizedBox(height: 40), // Add spacing before the button
