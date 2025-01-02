@@ -143,7 +143,7 @@ class _StepTwoState extends State<StepTwo> {
                   ],
                 ),
                 Container(
-                  margin: const EdgeInsets.symmetric(vertical: 15),
+                  margin: const EdgeInsets.symmetric(vertical: 20),
                   width: 90,
                   height: 36,
                   decoration: BoxDecoration(

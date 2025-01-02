@@ -70,77 +70,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(width: 10),
                   ],
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 15),
-                  width: 90,
-                  height: 36,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(32)),
-                  child: const Center(
-                    child: Text(
-                      'Step 3 of 3',
-                      style: kSmallBtnText,
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 20),
                 const SizedBox(
                   width: 382,
-                  child: Text('Choose Your Password.', style: kHeaderText),
+                  child: Text('OTP Confirmation', style: kHeaderText),
                 ),
                 const SizedBox(height: 15),
                 const SizedBox(
-                    width: 382,
+                    width: 332,
                     child: Text(
-                      'We want to recommend services based on \nyour location and also for your deliveries',
+                      'We sent you a 6 digit OTP to your email. Enter it to confirm your email address',
                       style: kSubHeaderText,
                     )),
                 const SizedBox(height: 20),
-                SizedBox(
+                const SizedBox(
                   width: 382,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 10),
-
-                      //Password
-                      const Text('Password', style: kFormLabelText),
-                      const SizedBox(height: 10),
-
-                      CustomPasswordInputField(
-                        controller: _passwordController,
-                        hintText: 'Password',
-                        key: const ValueKey("passwordField"),
-                        onchanged: (password) {
-                          _validatePassword(password);
-                          _validatePasswordsMatch();
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      const Text('Re-enter Password', style: kFormLabelText),
-                      const SizedBox(height: 10),
-                      CustomPasswordInputField(
-                        controller: _confirmPasswordController,
-                        hintText: 'Re-enter Password',
-                        key: const ValueKey("confirmPasswordField"),
-                        onchanged: (_) {
-                          _validatePasswordsMatch();
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                      if (!_passwordsMatch &&
-                          _confirmPasswordController.text.isNotEmpty)
-                        const Text(
-                          "Passwords do not match",
-                          style: TextStyle(color: Colors.red, fontSize: 14),
-                        ),
-                      const SizedBox(height: 10),
-                      _buildValidationRow("Capital letter", _hasCapitalLetter),
-                      const SizedBox(height: 10),
-                      _buildValidationRow(
-                          "Alphanumeric character", _isAlphanumeric),
-                      const SizedBox(height: 10),
-                      _buildValidationRow("8 characters", _isMaxLength),
+                      SizedBox(height: 10),
                     ],
                   ),
                 ),
@@ -184,40 +132,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildValidationRow(String text, bool? isValid) {
-    Color iconColor;
-
-    if (isValid == null) {
-      iconColor = Colors.grey; // Default state
-    } else if (isValid) {
-      iconColor = const Color(0xff04c870); //valid state
-    } else {
-      iconColor = const Color(0xffbe1a0e); //invalid state
-    }
-
-    return Row(
-      children: [
-        Icon(
-          isValid == null
-              ? Ionicons.checkmark_circle_outline // Default icon
-              : (isValid ? Ionicons.checkmark_circle : Ionicons.close_circle),
-          color: iconColor,
-          size: 22,
-        ),
-        const SizedBox(width: 10),
-        Text(
-          text,
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            height: 1.33,
-          ),
-        ),
-      ],
     );
   }
 }
