@@ -74,6 +74,12 @@ const kOTPStyle = TextStyle(
   fontWeight: FontWeight.w600,
   height: 1.33,
 );
+const kOTPActive = TextStyle(
+  color: Colors.black,
+  fontSize: 24,
+  fontWeight: FontWeight.w600,
+  height: 1.33,
+);
 
 // const kTextFieldInput = InputDecoration(
 //     filled: true,

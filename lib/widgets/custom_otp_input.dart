@@ -13,6 +13,8 @@ class CustomOTPInput extends StatelessWidget {
         height: 70,
         margin: const EdgeInsets.only(right: 10),
         child: TextFormField(
+          style: kOTPActive,
+          cursorColor: kButtonColor,
           onChanged: (value) {
             if (value.length == 1) {
               FocusScope.of(context).nextFocus();

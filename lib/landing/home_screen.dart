@@ -69,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       //     },
                       //   ),
                       // )
+
                       Form(
                           child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: 'Confirm Email Address',
                   onPressed: () {},
                 ),
+                const SizedBox(height: 15),
                 SizedBox(
                   width: 382,
                   height: 40,
