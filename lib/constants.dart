@@ -68,6 +68,13 @@ const kItemListTextStyle = TextStyle(
   height: 1.33,
 );
 
+const kOTPStyle = TextStyle(
+  color: Color(0xFFA3A3A3),
+  fontSize: 24,
+  fontWeight: FontWeight.w600,
+  height: 1.33,
+);
+
 // const kTextFieldInput = InputDecoration(
 //     filled: true,
 //     fillColor: Colors.transparent,

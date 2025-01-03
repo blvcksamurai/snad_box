@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:snad_box/constants.dart';
-import 'package:snad_box/widgets/custom_input_field.dart';
-import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
-import 'package:snad_box/widgets/custom_password_field.dart';
 
 import '../widgets/custom_btn.dart';
+import '../widgets/custom_otp_input.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,43 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-
-  bool? _hasCapitalLetter;
-  bool? _isAlphanumeric;
-  bool? _isMaxLength;
-  bool _passwordsMatch = false;
-
-  void _validatePassword(String password) {
-    setState(() {
-      _hasCapitalLetter =
-          password.isEmpty ? null : password.contains(RegExp(r'[A-Z]'));
-      _isAlphanumeric = password.isEmpty
-          ? null
-          : password.contains(RegExp(r'[a-zA-Z]')) &&
-              password.contains(RegExp(r'[0-9]'));
-      _isMaxLength =
-          password.isEmpty ? null : password.length >= 8; // Fixed condition
-    });
-  }
-
-  void _validatePasswordsMatch() {
-    setState(() {
-      _passwordsMatch =
-          _passwordController.text == _confirmPasswordController.text &&
-              _passwordController.text.isNotEmpty;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    bool allConditionsMet = (_hasCapitalLetter ?? false) &&
-        (_isAlphanumeric ?? false) &&
-        (_isMaxLength ?? false) &&
-        _passwordsMatch;
-
     return Scaffold(
       backgroundColor: kBgcolor,
       body: SafeArea(
@@ -89,22 +50,44 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 10),
+                      // SizedBox(
+                      //   height: 70, // Height of the items
+                      //   child: ListView.builder(
+                      //     scrollDirection: Axis
+                      //         .horizontal, // Set the scroll direction to horizontal
+                      //     itemCount: 6,
+                      //     itemBuilder: (context, index) {
+                      //       return Padding(
+                      //         padding: const EdgeInsets.symmetric(
+                      //             horizontal: 8.0), // Add spacing between items
+                      //         child: SizedBox(
+                      //           height: 70,
+                      //           width: 57,
+                      //           child: CustomInputField(hintText: '0'),
+                      //         ),
+                      //       );
+                      //     },
+                      //   ),
+                      // )
+                      Form(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomOTPInput(),
+                          CustomOTPInput(),
+                          CustomOTPInput(),
+                          CustomOTPInput(),
+                          CustomOTPInput(),
+                          CustomOTPInput(),
+                        ],
+                      )),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height *
-                      0.2, // Responsive space
-                ),
+                const SizedBox(height: 30),
                 CustomButton(
-                  text: 'Create Account',
-                  enabled: allConditionsMet,
-                  onPressed: allConditionsMet
-                      ? () {
-                          // Button logic
-                          print("Account Created!");
-                        }
-                      : null,
+                  text: 'Confirm Email Address',
+                  onPressed: () {},
                 ),
                 SizedBox(
                   width: 382,
@@ -113,19 +96,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Already have an account? ',
+                        "Didn't get a code? ",
                         style: kSubHeaderText,
                       ),
                       InkWell(
                         onTap: () {},
                         child: const Text(
-                          "Log In",
+                          "Request Code",
                           style: kSubHeaderText2,
                         ),
                       )
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height *
+                      0.15, // Responsive space
+                ),
+                SvgPicture.asset('assets/images/planes.svg'),
                 const SizedBox(height: 20),
               ],
             ),
