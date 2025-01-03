@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color kButtonColor = Color(0xFFFFBE4C);
+const Color kIconButtonColor = Color(0xfffeebcb);
 const Color kHeaderTextColor = Color(0xFF0A0A0A);
 const Color kSubHeaderTextColor = Color(0xFF4F4F4F);
 const Color kBodyTextColor = Color(0xff7d848d);
@@ -28,6 +29,36 @@ const kSubHeaderText = TextStyle(
   fontSize: 17,
   fontWeight: FontWeight.w600,
   height: 1.3,
+);
+
+const kGreeting = TextStyle(
+  color: kHeaderTextColor,
+  fontSize: 24,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.bold,
+  height: 1.29,
+);
+const kWelcomeMessage = TextStyle(
+  color: Color(0xFF4F4F4F),
+  fontFamily: 'Gsa',
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+  height: 1.3,
+);
+
+//Card Home widget
+const kHeroMessage = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+  height: 1.45,
+);
+
+const kHeroText = TextStyle(
+  color: Color(0xFF353535),
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+  height: 1.50,
 );
 
 const kSubHeaderText2 = TextStyle(
@@ -78,6 +109,13 @@ const kOTPActive = TextStyle(
   color: Colors.black,
   fontSize: 24,
   fontWeight: FontWeight.w600,
+  height: 1.33,
+);
+
+const kBigTextStyle = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
   height: 1.33,
 );
 
