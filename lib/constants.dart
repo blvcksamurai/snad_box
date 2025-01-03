@@ -119,6 +119,20 @@ const kBigTextStyle = TextStyle(
   height: 1.33,
 );
 
+const kItemTextStyle = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 16,
+  fontWeight: FontWeight.w500,
+  height: 1.50,
+);
+
+const kPriceTextStyle = TextStyle(
+  color: Color(0xFF353535),
+  fontSize: 14,
+  fontFamily: 'General Sans',
+  fontWeight: FontWeight.w500,
+  height: 1.43,
+);
 // const kTextFieldInput = InputDecoration(
 //     filled: true,
 //     fillColor: Colors.transparent,
