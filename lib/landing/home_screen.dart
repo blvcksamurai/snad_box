@@ -130,6 +130,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       //Categories
                       const LargeTextWithIcon(headerTitle: 'Categories'),
+                      const SizedBox(height: 10),
+
+                      Container(
+                        margin: const EdgeInsets.only(right: 15),
+                        child: const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CategoriesItem(),
+                                CategoriesItem(),
+                                CategoriesItem(),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CategoriesItem(),
+                                CategoriesItem(),
+                                CategoriesItem(),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height *
                             0.15, // Responsive space
@@ -141,6 +168,39 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CategoriesItem extends StatelessWidget {
+  const CategoriesItem({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 125,
+      height: 40,
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+      decoration: BoxDecoration(
+          color: kIconButtonColor, borderRadius: BorderRadius.circular(72)),
+      child: const Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '📺',
+            style: kCategoriesTextStyle,
+          ),
+          Expanded(
+            child: Text(
+              ' Food Stuffs',
+              style: kCategoriesTextStyle,
+            ),
+          )
+        ],
       ),
     );
   }

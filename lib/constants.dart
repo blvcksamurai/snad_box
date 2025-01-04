@@ -126,6 +126,13 @@ const kItemTextStyle = TextStyle(
   height: 1.50,
 );
 
+const kCategoriesTextStyle = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+  height: 1.50,
+);
+
 const kPriceTextStyle = TextStyle(
   color: Color(0xFF353535),
   fontSize: 14,
