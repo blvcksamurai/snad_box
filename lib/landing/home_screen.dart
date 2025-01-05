@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 CategoriesItem(),
-                                // CategoriesItem(),
+                                CategoriesItem(),
                                 CategoriesItem(),
                               ],
                             ),
