@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:snad_box/constants.dart';
+import 'package:snad_box/utils/constants.dart';
 
 class CustomOTPInput extends StatelessWidget {
   const CustomOTPInput({super.key});

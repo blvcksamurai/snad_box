@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snad_box/constants.dart';
+import 'package:snad_box/utils/constants.dart';
 
 class CustomFormField extends StatefulWidget {
   const CustomFormField({super.key});

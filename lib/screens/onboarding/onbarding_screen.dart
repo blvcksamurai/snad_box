@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../constants.dart';
-import '../widgets/custom_btn.dart';
+import '../../utils/constants.dart';
+import '../../widgets/custom_btn.dart';
 
 class OnbardingScreen extends StatelessWidget {
   const OnbardingScreen({super.key});

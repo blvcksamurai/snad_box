@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../utils/constants.dart';
 import 'custom_icon_button.dart';
 
 class ForYouItems extends StatelessWidget {
+  final String title;
+  final int price;
   const ForYouItems({
     super.key,
+    required this.title,
+    required this.price,
   });
 
   @override
@@ -36,17 +40,17 @@ class ForYouItems extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          const SizedBox(
+          SizedBox(
             width: 143,
             child: Text(
-              'Mockup Water Bottle',
+              title,
               style: kItemTextStyle,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           const SizedBox(height: 5),
-          const Text(
-            '₦ 4,130',
+          Text(
+            '₦${price.toString()}',
             style: kPriceTextStyle,
           )
         ],

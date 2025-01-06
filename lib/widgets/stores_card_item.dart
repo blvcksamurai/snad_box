@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../utils/constants.dart';
 import 'custom_icon_with_rating.dart';
 
 class StoresCardItem extends StatelessWidget {
   final String name;
+  final int rating;
 
   const StoresCardItem({
     super.key,
     required this.name,
+    required this.rating,
   });
 
   @override
@@ -35,7 +37,7 @@ class StoresCardItem extends StatelessWidget {
                   onPressed: () {},
                   icon: Icons.star_border_rounded,
                   bgColor: Colors.white,
-                  rating: 4.3,
+                  rating: rating.toDouble(),
                 ),
               )
             ],
