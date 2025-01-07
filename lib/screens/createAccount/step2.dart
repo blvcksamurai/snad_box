@@ -15,15 +15,15 @@ class StepTwo extends StatefulWidget {
 }
 
 class _StepTwoState extends State<StepTwo> {
-  String? selectedState; // To store the selected state
-  String? selectedLGA; // To store the selected LGA
+  String? selectedState;
+  String? selectedLGA;
 
   void _showSearchableBottomSheet({
     required BuildContext context,
     required List<String> items,
     required Function(String) onSelect,
     required String title,
-    String? c_search,
+    String? searchHint,
   }) {
     showModalBottomSheet(
       showDragHandle: true,
@@ -38,10 +38,10 @@ class _StepTwoState extends State<StepTwo> {
         List<String> filteredItems = List.from(items);
 
         return DraggableScrollableSheet(
-          initialChildSize: 0.6, // Default height: 60%
-          minChildSize: 0.6, // Minimum height: 60%
-          maxChildSize: 0.8, // Maximum height: 80%
-          expand: false, // Allows snapping to sizes
+          initialChildSize: 0.6,
+          minChildSize: 0.6,
+          maxChildSize: 0.8,
+          expand: false,
           builder: (context, scrollController) {
             return StatefulBuilder(
               builder: (context, setState) {
@@ -69,7 +69,7 @@ class _StepTwoState extends State<StepTwo> {
                           ),
                           const SizedBox(height: 10),
                           CustomInputField(
-                            hintText: 'Search for your $c_search',
+                            hintText: 'Search for your $searchHint',
                             controller: searchController,
                             onchanged: filterItems,
                             prefixIcon: const Icon(Iconsax.search_normal_1),
@@ -77,36 +77,24 @@ class _StepTwoState extends State<StepTwo> {
                         ],
                       ),
                     ),
-                    const Divider(
-                      color: Color(0xFFE3E3E3),
-                    ),
+                    const Divider(color: Color(0xFFE3E3E3)),
                     Expanded(
                       child: filteredItems.isNotEmpty
                           ? ListView.builder(
                               controller: scrollController,
                               itemCount: filteredItems.length,
                               itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 25),
-                                  child: Column(
-                                    children: [
-                                      ListTile(
-                                        title: Center(
-                                          child: Text(filteredItems[index],
-                                              style: kItemListTextStyle),
-                                        ),
-                                        onTap: () {
-                                          onSelect(filteredItems[index]);
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                      if (index < filteredItems.length - 1)
-                                        const Divider(
-                                          color: Color(0xFFE3E3E3),
-                                        ), // Divider between items
-                                    ],
+                                return ListTile(
+                                  title: Center(
+                                    child: Text(
+                                      filteredItems[index],
+                                      style: kItemListTextStyle,
+                                    ),
                                   ),
+                                  onTap: () {
+                                    onSelect(filteredItems[index]);
+                                    Navigator.pop(context);
+                                  },
                                 );
                               },
                             )
@@ -129,189 +117,178 @@ class _StepTwoState extends State<StepTwo> {
     return Scaffold(
       backgroundColor: kBgcolor,
       body: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.all(15),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SvgPicture.asset('assets/images/o_logo.svg'),
-                    const SizedBox(width: 10),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 20),
-                  width: 90,
-                  height: 36,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(32)),
-                  child: const Center(
-                    child: Text(
-                      'Step 2 of 3',
-                      style: kSmallBtnText,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 382,
-                  child: Text('Location Information.', style: kHeaderText),
-                ),
-                const SizedBox(height: 15),
-                const SizedBox(
-                    width: 382,
-                    child: Text(
-                      'We want to recommend services based on \nyour location and also for your deliveries.',
-                      style: kSubHeaderText,
-                    )),
+                _buildHeader(),
                 const SizedBox(height: 20),
-                SizedBox(
-                    width: 382,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Address
-                        const SizedBox(height: 10),
-                        const Text('Address', style: kFormLabelText),
-                        const SizedBox(height: 10),
-                        CustomInputField(hintText: 'Enter your address'),
-
-                        // Nigerian State dropdown
-                        const SizedBox(height: 10),
-                        const Text('State', style: kFormLabelText),
-                        const SizedBox(height: 10),
-                        GestureDetector(
-                          onTap: () {
-                            _showSearchableBottomSheet(
-                              context: context,
-                              c_search: 'state',
-                              items: NigerianStatesAndLGA.allStates,
-                              title: 'Choose your State',
-                              onSelect: (state) {
-                                setState(() {
-                                  selectedState = state;
-                                  selectedLGA = null; // Reset LGA
-                                });
-                              },
-                            );
-                          },
-                          child: Container(
-                            height: 56,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(
-                                    color: const Color(0xFFE3E3E3), width: 2),
-                                color: Colors.transparent),
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  selectedState ?? 'Choose your state',
-                                  style: selectedState == null
-                                      ? kHintText
-                                      : const TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.black,
-                                        ),
-                                ),
-                                const Icon(Iconsax.arrow_down_1,
-                                    color: Colors.black), // Dropdown icon
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        // LGA dropdown
-                        const SizedBox(height: 10),
-                        const Text('LGA', style: kFormLabelText),
-                        const SizedBox(height: 10),
-                        GestureDetector(
-                          onTap: selectedState == null
-                              ? null
-                              : () {
-                                  _showSearchableBottomSheet(
-                                    context: context,
-                                    items: NigerianStatesAndLGA.getStateLGAs(
-                                        selectedState!),
-                                    c_search: 'local government',
-                                    title: 'Choose your LGA',
-                                    onSelect: (lga) {
-                                      setState(() {
-                                        selectedLGA = lga;
-                                      });
-                                    },
-                                  );
-                                },
-                          child: Container(
-                            height: 56,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(
-                                    color: const Color(0xFFE3E3E3), width: 2),
-                                color: Colors.transparent),
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  selectedLGA ?? 'Choose your LGA',
-                                  style: selectedLGA == null
-                                      ? kHintText
-                                      : const TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.black,
-                                        ),
-                                ),
-                                const Icon(Iconsax.arrow_down_1,
-                                    color: Colors.black), // Dropdown icon
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    )),
+                _buildStepIndicator(),
+                const SizedBox(height: 20),
+                _buildIntroText(),
+                const SizedBox(height: 20),
+                _buildForm(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height *
                       0.2, // Responsive space
                 ),
-                CustomButton(
-                  text: 'Next',
-                ),
-                SizedBox(
-                  width: 382,
-                  height: 40,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Already have an account? ',
-                        style: kSubHeaderText,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: const Text(
-                          "Log In",
-                          style: kSubHeaderText2,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20), // Add spacing before the button
+                _buildNextButton(),
+                const SizedBox(height: 20),
+                _buildLoginPrompt(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SvgPicture.asset('assets/images/o_logo.svg'),
+        const SizedBox(width: 10),
+      ],
+    );
+  }
+
+  Widget _buildStepIndicator() {
+    return Container(
+      width: 90,
+      height: 36,
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(32),
+      ),
+      child: const Center(
+        child: Text('Step 2 of 3', style: kSmallBtnText),
+      ),
+    );
+  }
+
+  Widget _buildIntroText() {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Location Information.', style: kHeaderText),
+        SizedBox(height: 15),
+        Text(
+          'We want to recommend services based on \nyour location and also for your deliveries.',
+          style: kSubHeaderText,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildForm() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildInputField(label: 'Address', hintText: 'Enter your address'),
+        const SizedBox(height: 10),
+        _buildDropdown(
+          label: 'State',
+          value: selectedState,
+          hint: 'Choose your state',
+          items: NigerianStatesAndLGA.allStates,
+          onSelect: (state) {
+            setState(() {
+              selectedState = state;
+              selectedLGA = null;
+            });
+          },
+        ),
+        const SizedBox(height: 10),
+        _buildDropdown(
+          label: 'LGA',
+          value: selectedLGA,
+          hint: 'Choose your LGA',
+          items: selectedState == null
+              ? []
+              : NigerianStatesAndLGA.getStateLGAs(selectedState!),
+          onSelect: (lga) => setState(() => selectedLGA = lga),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildInputField({required String label, required String hintText}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: kFormLabelText),
+        const SizedBox(height: 10),
+        CustomInputField(hintText: hintText),
+      ],
+    );
+  }
+
+  Widget _buildDropdown({
+    required String label,
+    String? value,
+    required String hint,
+    required List<String> items,
+    required Function(String) onSelect,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: kFormLabelText),
+        const SizedBox(height: 10),
+        GestureDetector(
+          onTap: () => _showSearchableBottomSheet(
+            context: context,
+            items: items,
+            searchHint: label.toLowerCase(),
+            title: 'Choose your $label',
+            onSelect: onSelect,
+          ),
+          child: Container(
+            height: 56,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: const Color(0xFFE3E3E3), width: 2),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  value ?? hint,
+                  style: value == null
+                      ? kHintText
+                      : const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black,
+                        ),
+                ),
+                const Icon(Iconsax.arrow_down_1, color: Colors.black),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNextButton() {
+    return CustomButton(text: 'Next');
+  }
+
+  Widget _buildLoginPrompt() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text('Already have an account? ', style: kSubHeaderText),
+        InkWell(
+          onTap: () {},
+          child: const Text('Log In', style: kSubHeaderText2),
+        ),
+      ],
     );
   }
 }

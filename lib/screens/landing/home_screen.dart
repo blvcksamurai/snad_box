@@ -28,185 +28,185 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                margin: const EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset('assets/images/o_logo.svg'),
-                        SizedBox(
-                          width: 90,
-                          height: 40,
-                          child: Row(
-                            children: [
-                              const SizedBox(width: 5),
-                              CustomIconButton(
-                                icon: Iconsax.search_normal_1,
-                                onPressed: () {},
-                              ),
-                              const SizedBox(width: 5),
-                              CustomIconButton(
-                                icon: Iconsax.shopping_cart,
-                                onPressed: () {},
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    //Welcome message
-                    const SizedBox(
-                      width: 382,
-                      child: Text('🌤️ Good Morning, Aise', style: kGreeting),
-                    ),
-                    const SizedBox(height: 10),
-                    const SizedBox(
-                        width: 332,
-                        child: Text(
-                          'What are we getting you today?',
-                          style: kWelcomeMessage,
-                        )),
-                    const SizedBox(height: 20),
-
-                    //Hero Card
-                    const HeroCardTile(),
-                  ],
-                ),
+              _buildHeader(),
+              const SizedBox(height: 20),
+              _buildGreeting(),
+              const SizedBox(height: 20),
+              _buildForYouSection(),
+              const SizedBox(height: 30),
+              _buildStoresSection(),
+              const SizedBox(height: 30),
+              _buildCategoriesSection(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.15,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 20),
-                    //For You
-                    LargeTextWithIcon(
-                      headerTitle: 'For You',
-                      onPressed: () {},
-                    ),
-                    const SizedBox(height: 15),
-                    //For you Items
-                    SizedBox(
-                      height: 230, // Appropriate height for the list
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 4, // Item count
-                        itemBuilder: (context, index) {
-                          return const Padding(
-                            padding: EdgeInsets.only(
-                                right: 20.0), // Add spacing between items
-                            child: ForYouItems(
-                              title: 'Mockup Water Bottle',
-                              price: 4130,
-                            ), // Ensure this widget is properly implemented
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                    //Stores
-                    const LargeTextWithIcon(headerTitle: 'Stores'),
-                    const SizedBox(height: 15),
-
-                    //Stores Card Item
-                    FutureBuilder(
-                        future: apiService.fetchData('store/brand'),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const SizedBox(
-                              height: 180,
-                              child: Center(
-                                  child: CircularProgressIndicator(
-                                color: kButtonColor,
-                              )),
-                            );
-                          } else if (snapshot.hasError) {
-                            return Center(
-                                child: Text('Error: ${snapshot.error}'));
-                          } else if (snapshot.hasData) {
-                            final data = snapshot.data;
-                            //Stores Items to be displayed
-                            return SizedBox(
-                              height:
-                                  180, // Set an appropriate height for the list
-                              child: ListView.builder(
-                                scrollDirection: Axis
-                                    .horizontal, // Ensure horizontal scrolling
-                                itemCount: data[
-                                    'length'], // Replace with your desired item count
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(right: 15.0),
-                                    child: StoresCardItem(
-                                      name: data['data']['brandStores'][index]
-                                          ['title'],
-                                      rating: data['data']['brandStores'][index]
-                                          ['rating'],
-                                    ),
-                                  );
-                                },
-                              ),
-                            );
-                          } else {
-                            return const Center(
-                              child: Text('No data available'),
-                            );
-                          }
-                        }),
-
-                    //Categories
-                    const LargeTextWithIcon(headerTitle: 'Categories'),
-                    const SizedBox(height: 10),
-
-                    Container(
-                      margin: const EdgeInsets.only(right: 15),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CategoriesItem(),
-                              CategoriesItem(),
-                              CategoriesItem(),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CategoriesItem(),
-                              CategoriesItem(),
-                              CategoriesItem(),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height *
-                          0.15, // Responsive space
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget _buildHeader() {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SvgPicture.asset('assets/images/o_logo.svg'),
+          Row(
+            children: [
+              CustomIconButton(
+                icon: Iconsax.search_normal_1,
+                onPressed: () {},
+              ),
+              const SizedBox(width: 5),
+              CustomIconButton(
+                icon: Iconsax.shopping_cart,
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGreeting() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('🌤️ Good Morning, Aise', style: kGreeting),
+          SizedBox(height: 10),
+          Text('What are we getting you today?', style: kWelcomeMessage),
+
+          //Hero Card
+          HeroCardTile(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildForYouSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          LargeTextWithIcon(
+            headerTitle: 'For You',
+            onPressed: () {},
+          ),
+          const SizedBox(height: 15),
+          SizedBox(
+            height: 230,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 4,
+              itemBuilder: (context, index) => const Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: ForYouItems(
+                  title: 'Mockup Water Bottle',
+                  price: 4130,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStoresSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const LargeTextWithIcon(headerTitle: 'Stores'),
+          const SizedBox(height: 15),
+          FutureBuilder(
+            future: apiService.fetchData('store/brand'),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const SizedBox(
+                  height: 180,
+                  child: Center(
+                      child: CircularProgressIndicator(color: kButtonColor)),
+                );
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (snapshot.hasData) {
+                final data = snapshot.data as Map<String, dynamic>;
+                final brandStores =
+                    data['data']['brandStores'] as List<dynamic>;
+
+                return SizedBox(
+                  height: 180,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: brandStores.length,
+                    itemBuilder: (context, index) {
+                      final store = brandStores[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 15.0),
+                        child: StoresCardItem(
+                          name: store['title'],
+                          rating: store['rating'],
+                        ),
+                      );
+                    },
+                  ),
+                );
+              } else {
+                return const Center(child: Text('No data available'));
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoriesSection() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          LargeTextWithIcon(headerTitle: 'Categories'),
+          SizedBox(height: 10),
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CategoriesItem(),
+                  CategoriesItem(),
+                  CategoriesItem(),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CategoriesItem(),
+                  CategoriesItem(),
+                  CategoriesItem(),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class CategoriesItem extends StatelessWidget {
-  const CategoriesItem({
-    super.key,
-  });
+  const CategoriesItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -215,43 +215,18 @@ class CategoriesItem extends StatelessWidget {
       height: 40,
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       decoration: BoxDecoration(
-          color: kIconButtonColor, borderRadius: BorderRadius.circular(72)),
+        color: kIconButtonColor,
+        borderRadius: BorderRadius.circular(72),
+      ),
       child: const Row(
-        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            '📺',
-            style: kCategoriesTextStyle,
-          ),
+          Text('📺', style: kCategoriesTextStyle),
           Expanded(
-            child: Text(
-              ' Food Stuffs',
-              style: kCategoriesTextStyle,
-            ),
-          )
+            child: Text(' Food Stuffs', style: kCategoriesTextStyle),
+          ),
         ],
       ),
     );
   }
 }
-
-
-// SizedBox(
-//                                 height: 230, // Appropriate height for the list
-//                                 child: ListView.builder(
-//                                   scrollDirection: Axis.horizontal,
-//                                   itemCount: 4, // Item count
-//                                   itemBuilder: (context, index) {
-//                                     return const Padding(
-//                                       padding: EdgeInsets.only(
-//                                           right:
-//                                               20.0), // Add spacing between items
-//                                       child: ForYouItems(
-//                                         title: 'Mockup Water Bottle',
-//                                         price: 4130,
-//                                       ), // Ensure this widget is properly implemented
-//                                     );
-//                                   },
-//                                 ),
-//                               );

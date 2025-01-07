@@ -4,10 +4,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:snad_box/utils/constants.dart';
 import 'package:snad_box/widgets/custom_input_field.dart';
-import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
 import 'package:snad_box/widgets/custom_password_field.dart';
-
-import '../../widgets/custom_btn.dart';
+import 'package:snad_box/widgets/custom_btn.dart';
 
 class StepThree extends StatefulWidget {
   const StepThree({super.key});
@@ -34,8 +32,7 @@ class _StepThreeState extends State<StepThree> {
           ? null
           : password.contains(RegExp(r'[a-zA-Z]')) &&
               password.contains(RegExp(r'[0-9]'));
-      _isMaxLength =
-          password.isEmpty ? null : password.length >= 8; // Fixed condition
+      _isMaxLength = password.isEmpty ? null : password.length >= 8;
     });
   }
 
@@ -57,128 +54,23 @@ class _StepThreeState extends State<StepThree> {
     return Scaffold(
       backgroundColor: kBgcolor,
       body: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.all(15),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SvgPicture.asset('assets/images/o_logo.svg'),
-                    const SizedBox(width: 10),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 20),
-                  width: 90,
-                  height: 36,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(32)),
-                  child: const Center(
-                    child: Text(
-                      'Step 3 of 3',
-                      style: kSmallBtnText,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 382,
-                  child: Text('Choose Your Password.', style: kHeaderText),
-                ),
-                const SizedBox(height: 15),
-                const SizedBox(
-                    width: 382,
-                    child: Text(
-                      'We want to recommend services based on \nyour location and also for your deliveries',
-                      style: kSubHeaderText,
-                    )),
+                _buildHeader(),
                 const SizedBox(height: 20),
-                SizedBox(
-                  width: 382,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 10),
-
-                      //Password
-                      const Text('Password', style: kFormLabelText),
-                      const SizedBox(height: 10),
-
-                      CustomPasswordInputField(
-                        controller: _passwordController,
-                        hintText: 'Password',
-                        key: const ValueKey("passwordField"),
-                        onchanged: (password) {
-                          _validatePassword(password);
-                          _validatePasswordsMatch();
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      const Text('Re-enter Password', style: kFormLabelText),
-                      const SizedBox(height: 10),
-                      CustomPasswordInputField(
-                        controller: _confirmPasswordController,
-                        hintText: 'Re-enter Password',
-                        key: const ValueKey("confirmPasswordField"),
-                        onchanged: (_) {
-                          _validatePasswordsMatch();
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                      if (!_passwordsMatch &&
-                          _confirmPasswordController.text.isNotEmpty)
-                        const Text(
-                          "Passwords do not match",
-                          style: TextStyle(color: Colors.red, fontSize: 14),
-                        ),
-                      const SizedBox(height: 10),
-                      _buildValidationRow("Capital letter", _hasCapitalLetter),
-                      const SizedBox(height: 10),
-                      _buildValidationRow(
-                          "Alphanumeric character", _isAlphanumeric),
-                      const SizedBox(height: 10),
-                      _buildValidationRow("8 characters", _isMaxLength),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height *
-                      0.2, // Responsive space
-                ),
-                CustomButton(
-                  text: 'Create Account',
-                  enabled: allConditionsMet,
-                  onPressed: allConditionsMet
-                      ? () {
-                          // Button logic
-                          print("Account Created!");
-                        }
-                      : null,
-                ),
-                SizedBox(
-                  width: 382,
-                  height: 40,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Already have an account? ',
-                        style: kSubHeaderText,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: const Text(
-                          "Log In",
-                          style: kSubHeaderText2,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                _buildStepIndicator(),
                 const SizedBox(height: 20),
+                _buildIntroText(),
+                const SizedBox(height: 20),
+                _buildPasswordForm(),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                _buildCreateAccountButton(allConditionsMet),
+                const SizedBox(height: 20),
+                _buildLoginPrompt(),
               ],
             ),
           ),
@@ -187,22 +79,112 @@ class _StepThreeState extends State<StepThree> {
     );
   }
 
+  Widget _buildHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SvgPicture.asset('assets/images/o_logo.svg'),
+      ],
+    );
+  }
+
+  Widget _buildStepIndicator() {
+    return Container(
+      width: 90,
+      height: 36,
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(32),
+      ),
+      child: const Center(
+        child: Text('Step 3 of 3', style: kSmallBtnText),
+      ),
+    );
+  }
+
+  Widget _buildIntroText() {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Choose Your Password.', style: kHeaderText),
+        SizedBox(height: 15),
+        Text(
+          'We want to recommend services based on \nyour location and also for your deliveries',
+          style: kSubHeaderText,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPasswordForm() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildPasswordField(
+          label: 'Password',
+          controller: _passwordController,
+          onChanged: (password) {
+            _validatePassword(password);
+            _validatePasswordsMatch();
+          },
+        ),
+        const SizedBox(height: 20),
+        _buildPasswordField(
+          label: 'Re-enter Password',
+          controller: _confirmPasswordController,
+          onChanged: (_) => _validatePasswordsMatch(),
+        ),
+        const SizedBox(height: 10),
+        if (!_passwordsMatch && _confirmPasswordController.text.isNotEmpty)
+          const Text(
+            "Passwords do not match",
+            style: TextStyle(color: Colors.red, fontSize: 14),
+          ),
+        const SizedBox(height: 10),
+        _buildValidationRow("Capital letter", _hasCapitalLetter),
+        const SizedBox(height: 10),
+        _buildValidationRow("Alphanumeric character", _isAlphanumeric),
+        const SizedBox(height: 10),
+        _buildValidationRow("8 characters", _isMaxLength),
+      ],
+    );
+  }
+
+  Widget _buildPasswordField({
+    required String label,
+    required TextEditingController controller,
+    required Function(String) onChanged,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: kFormLabelText),
+        const SizedBox(height: 10),
+        CustomPasswordInputField(
+          controller: controller,
+          hintText: label,
+          onchanged: onChanged,
+        ),
+      ],
+    );
+  }
+
   Widget _buildValidationRow(String text, bool? isValid) {
     Color iconColor;
 
     if (isValid == null) {
-      iconColor = Colors.grey; // Default state
+      iconColor = Colors.grey;
     } else if (isValid) {
-      iconColor = const Color(0xff04c870); //valid state
+      iconColor = const Color(0xff04c870);
     } else {
-      iconColor = const Color(0xffbe1a0e); //invalid state
+      iconColor = const Color(0xffbe1a0e);
     }
 
     return Row(
       children: [
         Icon(
           isValid == null
-              ? Ionicons.checkmark_circle_outline // Default icon
+              ? Ionicons.checkmark_circle_outline
               : (isValid ? Ionicons.checkmark_circle : Ionicons.close_circle),
           color: iconColor,
           size: 22,
@@ -216,6 +198,27 @@ class _StepThreeState extends State<StepThree> {
             fontWeight: FontWeight.w500,
             height: 1.33,
           ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCreateAccountButton(bool allConditionsMet) {
+    return CustomButton(
+      text: 'Create Account',
+      enabled: allConditionsMet,
+      onPressed: allConditionsMet ? () => print("Account Created!") : null,
+    );
+  }
+
+  Widget _buildLoginPrompt() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text('Already have an account? ', style: kSubHeaderText),
+        InkWell(
+          onTap: () {},
+          child: const Text("Log In", style: kSubHeaderText2),
         ),
       ],
     );
