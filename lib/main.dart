@@ -4,6 +4,7 @@ import 'package:snad_box/screens/createAccount/step1.dart';
 import 'package:snad_box/screens/createAccount/step2.dart';
 import 'package:snad_box/screens/createAccount/step3.dart';
 import 'package:snad_box/screens/landing/home_screen.dart';
+import 'package:snad_box/screens/products/product_description.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const CustomSplashScreen(),
-      home: const StepThree(),
+      home: const ProductDescription(),
     );
   }
 }
