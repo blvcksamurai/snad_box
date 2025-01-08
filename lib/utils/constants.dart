@@ -140,6 +140,36 @@ const kPriceTextStyle = TextStyle(
   fontWeight: FontWeight.w500,
   height: 1.43,
 );
+
+const kProductName = TextStyle(
+  color: kHeaderTextColor,
+  fontSize: 24,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.bold,
+  height: 1.29,
+);
+
+const kProductPrice = TextStyle(
+  color: Color(0xFF353535),
+  fontSize: 22,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.w500,
+  height: 1.29,
+);
+
+const kProductDescHeader = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+  height: 1.50,
+);
+
+const kProductDesc = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+  height: 1.50,
+);
 // const kTextFieldInput = InputDecoration(
 //     filled: true,
 //     fillColor: Colors.transparent,

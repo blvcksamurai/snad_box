@@ -6,6 +6,9 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final bool enabled;
+  final bool button2;
+
+  final Color? color;
   IconData? icon;
   double? iconSize;
   CustomButton({
@@ -15,6 +18,8 @@ class CustomButton extends StatelessWidget {
     required this.text,
     this.onPressed,
     this.enabled = true,
+    this.color = kButtonColor,
+    this.button2 = false,
   });
 
   @override
@@ -26,8 +31,15 @@ class CustomButton extends StatelessWidget {
         child: Container(
           width: 382,
           height: 64,
-          decoration: BoxDecoration(
-              color: kButtonColor, borderRadius: BorderRadius.circular(80)),
+          decoration: ShapeDecoration(
+            color: button2 ? Colors.transparent : kButtonColor,
+            shape: RoundedRectangleBorder(
+              side: button2
+                  ? const BorderSide(width: 2, color: Color(0xFF0A0A0A))
+                  : BorderSide.none,
+              borderRadius: BorderRadius.circular(80),
+            ),
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +51,7 @@ class CustomButton extends StatelessWidget {
                   color: Color(0xFF0A0A0A),
                   fontFamily: 'Gsa',
                   fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               if (icon != null) ...[

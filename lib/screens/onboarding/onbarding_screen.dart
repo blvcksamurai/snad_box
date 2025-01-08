@@ -15,7 +15,7 @@ class OnbardingScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.all(15),
+              margin: const EdgeInsets.all(20),
               child: Column(
                 children: [
                   Row(
