@@ -5,7 +5,7 @@ import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
 
 import '../../utils/constants.dart';
 import '../../widgets/custom_btn.dart';
-import '../../widgets/custom_input_field.dart';
+import '../widgets/input_widgets/custom_input_field.dart';
 
 class StepTwo extends StatefulWidget {
   const StepTwo({super.key});

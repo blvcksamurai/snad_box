@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:snad_box/utils/constants.dart';
-import 'package:snad_box/widgets/custom_input_field.dart';
+import 'package:snad_box/widgets/input_widgets/custom_input_field.dart';
 import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
-import 'package:snad_box/widgets/custom_password_field.dart';
+import 'package:snad_box/widgets/input_widgets/custom_password_field.dart';
 
 import '../../widgets/custom_btn.dart';
 

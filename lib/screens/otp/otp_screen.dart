@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:snad_box/utils/constants.dart';
 
 import '../../widgets/custom_btn.dart';
-import '../../widgets/custom_otp_input.dart';
+import '../../widgets/input_widgets/custom_otp_input.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});

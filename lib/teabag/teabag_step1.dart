@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utils/constants.dart';
 import '../../widgets/custom_btn.dart';
-import '../../widgets/custom_input_field.dart';
+import '../widgets/input_widgets/custom_input_field.dart';
 
 class StepOne extends StatelessWidget {
   const StepOne({super.key});

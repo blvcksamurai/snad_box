@@ -23,7 +23,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: kBgcolor,
-        height: size.height * .115,
+        height: 100,
         elevation: 4,
         shadowColor: Colors.black,
         child: Row(
