@@ -6,7 +6,7 @@ import 'package:snad_box/utils/constants.dart';
 import '../../widgets/custom_icon_button.dart';
 import '../../widgets/for_you_items.dart';
 import '../../widgets/hero_card_tile.dart';
-import '../../widgets/hero_text_with_icon.dart';
+import '../../widgets/large_text_with_icon.dart';
 import '../../widgets/stores_card_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 20),
               _buildGreeting(),
               const SizedBox(height: 20),
+              //Items
               _buildForYouSection(),
               const SizedBox(height: 30),
               _buildStoresSection(),

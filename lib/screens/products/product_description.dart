@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:snad_box/utils/constants.dart';
 import 'package:snad_box/widgets/custom_btn.dart';
-import 'package:snad_box/widgets/custom_icon_button.dart';
 import 'package:snad_box/widgets/item_counter.dart';
 
 import '../../widgets/product_app_bar.dart';
@@ -32,9 +31,14 @@ class _ProductDescriptionState extends State<ProductDescription> {
                 child: CustomButton(
               button2: true,
               text: 'Add to Cart',
+              onPressed: () {},
             )),
             const SizedBox(width: 20),
-            Expanded(child: CustomButton(text: 'Buy Now'))
+            Expanded(
+                child: CustomButton(
+              text: 'Buy Now',
+              onPressed: () {},
+            ))
           ],
         ),
       ),
