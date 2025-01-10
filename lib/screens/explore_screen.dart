@@ -89,12 +89,18 @@ Widget _buildForYouSection() {
 
 Widget _buildStoresSection() {
   ApiService apiService = ApiService();
+
   return Padding(
     padding: const EdgeInsets.only(left: 15),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const LargeTextWithIcon(headerTitle: 'Stores'),
+        LargeTextWithIcon(
+          headerTitle: 'Stores',
+          onPressed: () {
+            print('Stores has been pressed from Explore');
+          },
+        ),
         const SizedBox(height: 15),
         FutureBuilder(
           future: apiService.fetchData('store/brand'),
