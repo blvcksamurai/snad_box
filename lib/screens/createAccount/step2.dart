@@ -118,7 +118,7 @@ class _StepTwoState extends State<StepTwo> {
       backgroundColor: kBgcolor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

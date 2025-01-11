@@ -19,7 +19,7 @@ class _OtpScreenState extends State<OtpScreen> {
       backgroundColor: kBgcolor,
       body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.all(15),
+          margin: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,6 +74,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          //Add OTP service package
                           CustomOTPInput(),
                           CustomOTPInput(),
                           CustomOTPInput(),
@@ -91,31 +92,41 @@ class _OtpScreenState extends State<OtpScreen> {
                   onPressed: () {},
                 ),
                 const SizedBox(height: 15),
-                SizedBox(
-                  width: 382,
-                  height: 40,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Didn't get a code? ",
-                        style: kSubHeaderText,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: const Text(
-                          "Request Code",
-                          style: kSubHeaderText2,
+                Center(
+                  child: SizedBox(
+                    width: 382,
+                    height: 40,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Didn't get a code? ",
+                          style: kSubHeaderText,
                         ),
-                      )
-                    ],
+                        InkWell(
+                          onTap: () {},
+                          child: const Text(
+                            "Request Code",
+                            style: kSubHeaderText2,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height *
                       0.15, // Responsive space
                 ),
-                SvgPicture.asset('assets/images/planes.svg'),
+                SizedBox(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.35,
+                  child: Center(
+                      child: SvgPicture.asset(
+                    'assets/images/planes.svg',
+                    fit: BoxFit.fitHeight,
+                  )),
+                ),
                 const SizedBox(height: 20),
               ],
             ),

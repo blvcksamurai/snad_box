@@ -55,7 +55,7 @@ class _StepThreeState extends State<StepThree> {
       backgroundColor: kBgcolor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

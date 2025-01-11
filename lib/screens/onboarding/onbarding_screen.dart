@@ -13,10 +13,12 @@ class OnbardingScreen extends StatelessWidget {
       backgroundColor: kBgcolor,
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              margin: const EdgeInsets.all(20),
+            Padding(
+              padding: const EdgeInsets.all(20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,7 +52,14 @@ class OnbardingScreen extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            SvgPicture.asset('assets/images/illu_1.svg'),
+            SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.35,
+              child: SvgPicture.asset(
+                'assets/images/illu_1.svg',
+                fit: BoxFit.fitWidth,
+              ),
+            ),
             const SizedBox(height: 20)
           ],
         ),

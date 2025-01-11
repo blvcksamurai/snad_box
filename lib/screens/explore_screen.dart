@@ -42,7 +42,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   const SizedBox(height: 20),
                   _buildStoresSection(),
                   const SizedBox(height: 20),
-                  const HeroCardTile()
+                  const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: HeroCardTile())
                 ],
               ),
             ],
@@ -97,9 +99,7 @@ Widget _buildStoresSection() {
       children: [
         LargeTextWithIcon(
           headerTitle: 'Stores',
-          onPressed: () {
-            print('Stores has been pressed from Explore');
-          },
+          onPressed: () {},
         ),
         const SizedBox(height: 15),
         FutureBuilder(

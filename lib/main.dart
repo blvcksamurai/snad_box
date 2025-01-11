@@ -7,7 +7,10 @@ import 'package:snad_box/screens/createAccount/step3.dart';
 import 'package:snad_box/screens/explore_screen.dart';
 import 'package:snad_box/screens/landing/home_screen.dart';
 import 'package:snad_box/screens/onboarding/onbarding_screen.dart';
+import 'package:snad_box/screens/otp/otp_screen.dart';
 import 'package:snad_box/screens/products/product_description.dart';
+
+import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const CustomSplashScreen(),
-      home: const ExploreScreen(),
+      home: const HomeScreen(),
     );
   }
 }
