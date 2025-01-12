@@ -23,7 +23,7 @@ class CustomInputField extends StatelessWidget {
       onChanged: onchanged,
       cursorColor: kButtonColor,
       style: const TextStyle(
-          fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black),
+          fontSize: 18.0, fontWeight: FontWeight.w300, color: Colors.black),
       decoration: InputDecoration(
           prefixIcon: prefixIcon,
           focusColor: kButtonColor,
