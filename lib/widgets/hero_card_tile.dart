@@ -4,8 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/constants.dart';
 
 class HeroCardTile extends StatelessWidget {
+  final String? bigText;
+  final String? smallText;
+  final String? buttonContent;
   const HeroCardTile({
     super.key,
+    this.bigText,
+    this.smallText = 'Create your store easily with our easy to use tools',
+    this.buttonContent = 'Get Started',
   });
 
   @override
@@ -37,46 +43,48 @@ class HeroCardTile extends StatelessWidget {
                               child:
                                   SvgPicture.asset('assets/images/logo.svg')),
                           const SizedBox(height: 10),
-                          const SizedBox(
+                          SizedBox(
                             width: 221,
                             height: 64,
                             child: Text(
-                              'Own your own online store 😁',
+                              bigText ?? 'Own your own online store 😁',
                               style: kHeroMessage,
                             ),
                           ),
                           const SizedBox(height: 5),
-                          const SizedBox(
-                            width: 171,
+                          SizedBox(
+                            width: 180,
                             height: 36,
                             child: Text(
-                              'Create your store easily with our easy to use tools',
+                              smallText ??
+                                  'Create your store easily with our easy to use tools',
                               style: kHeroText,
                             ),
                           ),
                           const SizedBox(height: 15),
                           Container(
-                            width: 120,
+                            // width: 120,
                             height: 34,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             decoration: BoxDecoration(
                                 color: Colors.black,
                                 borderRadius: BorderRadius.circular(56)),
-                            child: const Row(
+                            child: Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Get Started',
-                                  style: TextStyle(
+                                  buttonContent ?? 'Get Started',
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,
                                     height: 1.50,
                                   ),
                                 ),
-                                SizedBox(width: 3),
-                                Icon(
+                                const SizedBox(width: 3),
+                                const Icon(
                                   Icons.arrow_forward,
                                   size: 16,
                                   color: Colors.white,

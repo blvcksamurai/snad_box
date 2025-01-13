@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     //Welcome message
                     const SizedBox(
                       width: 382,
-                      child: Text('🌤️ Good Morning, Aise', style: kGreeting),
+                      child: Text('🌤️ Good Morning, Aise', style: kPageHeader),
                     ),
                     const SizedBox(height: 10),
                     const SizedBox(

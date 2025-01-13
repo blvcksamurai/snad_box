@@ -31,7 +31,7 @@ const kSubHeaderText = TextStyle(
   height: 1.3,
 );
 
-const kGreeting = TextStyle(
+const kPageHeader = TextStyle(
   color: kHeaderTextColor,
   fontSize: 24,
   fontFamily: 'Gsa',
@@ -164,11 +164,26 @@ const kProductDescHeader = TextStyle(
   height: 1.50,
 );
 
+const kSettingLabel = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 16,
+  fontWeight: FontWeight.w500,
+  height: 1.5,
+);
+
 const kProductDesc = TextStyle(
   color: Color(0xFF0A0A0A),
   fontSize: 15,
   fontWeight: FontWeight.w500,
   height: 1.50,
+);
+
+const kPageSubHeader = TextStyle(
+  color: Color(0xFF4F4F4F),
+  fontSize: 14,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.w500,
+  height: 1.43,
 );
 // const kTextFieldInput = InputDecoration(
 //     filled: true,

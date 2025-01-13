@@ -9,6 +9,7 @@ import 'package:snad_box/screens/landing/home_screen.dart';
 import 'package:snad_box/screens/onboarding/onbarding_screen.dart';
 import 'package:snad_box/screens/otp/otp_screen.dart';
 import 'package:snad_box/screens/products/product_description.dart';
+import 'package:snad_box/screens/profile/profile_screen.dart';
 
 import 'screens/splash_screen.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const CustomSplashScreen(),
-      home: const HomeScreen(),
+      home: const ProfileScreen(),
     );
   }
 }

@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('🌤️ Good Morning, Aise', style: kGreeting),
+          Text('🌤️ Good Morning, Aise', style: kPageHeader),
           SizedBox(height: 10),
           Text('What are we getting you today?', style: kWelcomeMessage),
 
