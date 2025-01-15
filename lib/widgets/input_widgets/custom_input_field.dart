@@ -7,12 +7,14 @@ class CustomInputField extends StatelessWidget {
   TextEditingController? controller;
   Function(String)? onchanged;
   Widget? prefixIcon;
+  bool searchInput;
 
   CustomInputField({
     super.key,
     this.controller,
     this.onchanged,
     this.prefixIcon,
+    this.searchInput = false,
     required this.hintText,
   });
 
@@ -30,8 +32,8 @@ class CustomInputField extends StatelessWidget {
           filled: false,
           fillColor: kformColor,
           hintStyle: kHintText,
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
+          contentPadding: EdgeInsets.symmetric(
+              vertical: searchInput ? 10.0 : 18.0, horizontal: 16.0),
           focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(16),

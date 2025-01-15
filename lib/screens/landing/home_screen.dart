@@ -23,13 +23,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBgcolor,
+      appBar: AppBar(
+        title: _buildHeader(),
+        backgroundColor: Colors.transparent,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeader(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               _buildGreeting(),
               const SizedBox(height: 20),
               //Items
@@ -37,6 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 30),
               _buildStoresSection(),
               const SizedBox(height: 30),
+              const Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: LargeTextWithIcon(headerTitle: 'Categories'),
+              ),
+
               _buildCategoriesSection(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.15,
@@ -50,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildHeader() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -102,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 15),
           SizedBox(
-            height: 230,
+            height: 232,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 4,
@@ -172,34 +180,43 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildCategoriesSection() {
-    return const Padding(
-      padding: EdgeInsets.only(left: 20),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          LargeTextWithIcon(headerTitle: 'Categories'),
-          SizedBox(height: 10),
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CategoriesItem(),
-                  CategoriesItem(),
-                  CategoriesItem(),
-                ],
+          const SizedBox(height: 10),
+          Container(
+            width: double.infinity, // Allow the container to take full width
+            constraints: const BoxConstraints(minHeight: 90),
+            child: GridView.builder(
+              shrinkWrap: true, // Prevent GridView from scrolling independently
+              physics:
+                  const NeverScrollableScrollPhysics(), // Disable GridView scrolling
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, // Display 3 items per row
+                crossAxisSpacing: 10, // Spacing between columns
+                mainAxisSpacing: 10, // Spacing between rows
+                childAspectRatio:
+                    2.5, // Adjust the aspect ratio to fit your design
               ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CategoriesItem(),
-                  CategoriesItem(),
-                  CategoriesItem(),
-                ],
-              ),
-            ],
-          ),
+              itemCount: 6, // Total number of categories
+              itemBuilder: (context, index) {
+                final categories = [
+                  {'name': ' Appliances', 'emoji': '📺'},
+                  {'name': ' Food Stuffs', 'emoji': '🍎'},
+                  {'name': ' Devices', 'emoji': '📱'},
+                  {'name': ' Electronics', 'emoji': '🔌'},
+                  {'name': ' Fashion', 'emoji': '👗'},
+                  {'name': ' Computing', 'emoji': '💻'},
+                ];
+                return CategoriesItem(
+                  categoryName: categories[index]['name']!,
+                  emoji: categories[index]['emoji']!,
+                );
+              },
+            ),
+          )
         ],
       ),
     );
@@ -207,27 +224,38 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class CategoriesItem extends StatelessWidget {
-  const CategoriesItem({super.key});
+  final String categoryName;
+  final String emoji;
+  const CategoriesItem(
+      {super.key, required this.categoryName, required this.emoji});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 125,
       height: 40,
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+      constraints: const BoxConstraints(
+        minWidth: 0,
+      ),
+      // padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         color: kIconButtonColor,
         borderRadius: BorderRadius.circular(72),
       ),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('📺', style: kCategoriesTextStyle),
-          Expanded(
-            child: Text(' Food Stuffs', style: kCategoriesTextStyle),
-          ),
-        ],
+      child: Center(
+        child: Text.rich(TextSpan(children: [
+          TextSpan(text: emoji, style: kCategoriesTextStyle),
+          TextSpan(text: categoryName, style: kCategoriesTextStyle)
+        ])),
       ),
+      // child: const Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //   children: [
+      //     Text('📺', style: kCategoriesTextStyle),
+      //     Expanded(
+      //       child: Text('Food Stuffs', style: kCategoriesTextStyle),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

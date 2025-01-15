@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:snad_box/screens/cart/cart_screen.dart';
+import 'package:snad_box/screens/cart/tests.dart';
 import 'package:snad_box/screens/createAccount/step1.dart';
 import 'package:snad_box/screens/createAccount/step2.dart';
 import 'package:snad_box/screens/createAccount/step3.dart';
@@ -9,6 +11,7 @@ import 'package:snad_box/screens/landing/home_screen.dart';
 import 'package:snad_box/screens/onboarding/onbarding_screen.dart';
 import 'package:snad_box/screens/otp/otp_screen.dart';
 import 'package:snad_box/screens/products/product_description.dart';
+import 'package:snad_box/screens/profile/order_history.dart';
 import 'package:snad_box/screens/profile/profile_screen.dart';
 
 import 'screens/splash_screen.dart';
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const CustomSplashScreen(),
-      home: const ProfileScreen(),
+      home: const OrderHistoryScreen(),
     );
   }
 }

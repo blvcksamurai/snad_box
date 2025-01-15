@@ -49,10 +49,21 @@ class ForYouItems extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          Text(
-            '₦${price.toString()}',
-            style: kPriceTextStyle,
-          )
+          Text.rich(TextSpan(children: [
+            const TextSpan(
+                text: '₦ ',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'General',
+                  color: Color(0xFF353535),
+                  fontWeight: FontWeight.w500,
+                )),
+            TextSpan(text: price.toString(), style: kPriceTextStyle)
+          ])),
+          // Text(
+          //   '₦${price.toString()}',
+          //   style: kPriceTextStyle,
+          // )
         ],
       ),
     );

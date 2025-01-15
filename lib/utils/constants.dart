@@ -136,7 +136,7 @@ const kCategoriesTextStyle = TextStyle(
 const kPriceTextStyle = TextStyle(
   color: Color(0xFF353535),
   fontSize: 14,
-  fontFamily: 'General Sans',
+  fontFamily: 'Gsa',
   fontWeight: FontWeight.w500,
   height: 1.43,
 );
@@ -184,6 +184,22 @@ const kPageSubHeader = TextStyle(
   fontFamily: 'Gsa',
   fontWeight: FontWeight.w500,
   height: 1.43,
+);
+
+const kCartCount = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 12,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.w500,
+  height: 1.50,
+);
+
+const kCartItemTitle = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 16,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.w500,
+  height: 1.50,
 );
 // const kTextFieldInput = InputDecoration(
 //     filled: true,

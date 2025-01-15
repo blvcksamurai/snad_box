@@ -75,7 +75,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     ),
                     const SizedBox(height: 16),
                     CustomInputField(
-                      prefixIcon: const Icon(Iconsax.search_normal_1),
+                      prefixIcon: const Icon(
+                        Iconsax.search_normal_1,
+                        color: Colors.grey,
+                      ),
                       hintText: 'Search for a state',
                       onchanged: (value) {
                         setModalState(() {
@@ -168,70 +171,29 @@ class _ExploreScreenState extends State<ExploreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBgcolor,
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Explore',
+              style: kPageHeader,
+            ),
+            GestureDetector(
+              onTap: () => _showStateSelectionModal(context),
+              child: LocationSelector(selectedState: selectedState),
+            )
+          ],
+        ),
+        backgroundColor: Colors.transparent,
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 30),
               Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Explore',
-                          style: kHeaderText,
-                        ),
-                        GestureDetector(
-                          onTap: () => _showStateSelectionModal(context),
-                          child: Container(
-                            width: 130,
-                            height: 36,
-                            padding: const EdgeInsetsDirectional.symmetric(
-                                horizontal: 5),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(56),
-                              border: Border.all(
-                                  width: 1.5, color: Colors.grey.shade400),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Iconsax.location,
-                                      color: Colors.black,
-                                      size: 16, // Reduce icon size
-                                    ),
-                                    const SizedBox(
-                                        width: 4), // Minimize spacing
-                                    Text(
-                                      selectedState,
-                                      style: kFormLabelText.copyWith(
-                                          fontSize: 14), // Adjust font size
-                                      overflow: TextOverflow
-                                          .ellipsis, // Truncate if too long
-                                      maxLines: 1, // Ensure a single line
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(width: 4), // Minimize spacing
-                                const Icon(
-                                  Iconsax.arrow_down_1,
-                                  color: Colors.black,
-                                  size: 16, // Reduce icon size
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   _buildForYouSection(),
                   const SizedBox(height: 20),
                   _buildStoresSection(),
@@ -244,6 +206,56 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class LocationSelector extends StatelessWidget {
+  const LocationSelector({
+    super.key,
+    required this.selectedState,
+  });
+
+  final String selectedState;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 36,
+      padding: const EdgeInsetsDirectional.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(56),
+        border: Border.all(width: 1.5, color: Colors.grey.shade400),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Iconsax.location,
+                color: Colors.black,
+                size: 16, // Reduce icon size
+              ),
+              const SizedBox(width: 4), // Minimize spacing
+              Text(
+                selectedState,
+                style:
+                    kFormLabelText.copyWith(fontSize: 14), // Adjust font size
+                overflow: TextOverflow.ellipsis, // Truncate if too long
+                maxLines: 1, // Ensure a single line
+              ),
+            ],
+          ),
+          const SizedBox(width: 4), // Minimize spacing
+          const Icon(
+            Iconsax.arrow_down_1,
+            color: Colors.black,
+            size: 16, // Reduce icon size
+          ),
+        ],
       ),
     );
   }

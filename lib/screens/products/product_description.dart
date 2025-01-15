@@ -75,8 +75,11 @@ class _ProductDescriptionState extends State<ProductDescription> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: 95,
                         height: 36,
+                        constraints: const BoxConstraints(
+                          minWidth: 0,
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                             color: kIconButtonColor,
                             borderRadius: BorderRadius.circular(56)),
@@ -114,10 +117,16 @@ class _ProductDescriptionState extends State<ProductDescription> {
                           style: kProductName,
                         ),
                         SizedBox(height: 20),
-                        Text(
-                          'N 4,130',
-                          style: kProductPrice,
-                        ),
+                        Text.rich(TextSpan(children: [
+                          TextSpan(
+                              text: '₦ ',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontFamily: 'General',
+                                color: Color(0xFF353535),
+                              )),
+                          TextSpan(text: '4,130', style: kProductPrice)
+                        ])),
                       ],
                     ),
                   ),
@@ -148,24 +157,24 @@ class _ProductDescriptionState extends State<ProductDescription> {
                   ),
                   const SizedBox(height: 15),
                   Container(
-                    width: 146,
                     height: 30,
+                    constraints: const BoxConstraints(
+                      minWidth: 0,
+                    ),
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(8),
                       color: const Color(0xFFFCE0DE),
                     ),
-                    child: const Center(
-                      child: Text(
-                        '2 Items Left in Stock',
-                        style: TextStyle(
-                          color: Color(0xFF353535),
-                          fontSize: 12,
-                          fontFamily: 'Gsa',
-                          fontWeight: FontWeight.w500,
-                          height: 1.50,
-                        ),
+                    child: const Text(
+                      '2 Items Left in Stock',
+                      style: TextStyle(
+                        color: Color(0xFF353535),
+                        fontSize: 12,
+                        fontFamily: 'Gsa',
+                        fontWeight: FontWeight.w500,
+                        height: 1.50,
                       ),
                     ),
                   ),
