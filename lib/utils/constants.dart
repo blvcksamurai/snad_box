@@ -6,7 +6,7 @@ const Color kHeaderTextColor = Color(0xFF0A0A0A);
 const Color kSubHeaderTextColor = Color(0xFF4F4F4F);
 const Color kBodyTextColor = Color(0xff7d848d);
 const Color kformColor = Color(0Xfff7f7f9);
-
+const Color kGrey = Color(0xFFE3E3E3);
 const Color kBgcolor = Color(0xfffff8eb);
 //avatarbg colors
 
@@ -200,6 +200,14 @@ const kCartItemTitle = TextStyle(
   fontFamily: 'Gsa',
   fontWeight: FontWeight.w500,
   height: 1.50,
+);
+
+const kOrderHistorySmallText = TextStyle(
+  color: Color(0xFF4F4F4F),
+  fontSize: 14,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.w500,
+  height: 1.43,
 );
 // const kTextFieldInput = InputDecoration(
 //     filled: true,
