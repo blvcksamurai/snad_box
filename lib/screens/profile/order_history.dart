@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:snad_box/utils/constants.dart';
-import 'package:snad_box/widgets/hero_card_tile.dart';
+
+import '../../widgets/filter_and_search_widget.dart';
+import '../../widgets/order_screen_widgets/order_card_widget.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
   const OrderHistoryScreen({super.key});
@@ -27,62 +27,15 @@ class OrderHistoryScreen extends StatelessWidget {
           // Static "Order History" row
           Container(
             // color: kBgcolor, // Background color for the header
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Row(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Order History',
                   style: kPageHeader,
                 ),
-                Row(
-                  children: [
-                    Container(
-                      height: 32,
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      constraints: const BoxConstraints(
-                        minWidth: 0,
-                      ),
-                      decoration: ShapeDecoration(
-                        // color: Color(0xFFFFF7EA),
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(width: 1, color: kGrey),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: const Row(
-                        children: [
-                          Icon(
-                            Iconsax.filter,
-                            size: 20,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Filter',
-                            style: kOrderHistorySmallText,
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Container(
-                      height: 32,
-                      width: 32,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(width: 1, color: kGrey),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: const Icon(
-                        Iconsax.search_normal_1,
-                        size: 20,
-                      ),
-                    )
-                  ],
-                ),
+                kFilterAndSearchIconWidget(),
               ],
             ),
           ),
@@ -95,112 +48,9 @@ class OrderHistoryScreen extends StatelessWidget {
                 child: Column(
                   children: List.generate(
                     10, // Adjust to your number of items
-                    (index) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: SizedBox(
-                        height: 100,
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 100,
-                              width: 93,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  image: const DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/p_mockup.png'),
-                                      fit: BoxFit.cover)),
-                            ),
-                            const SizedBox(width: 10),
-                            SizedBox(
-                              width: 250,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    'Best green tea juice bottle mockup',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: kCartItemTitle,
-                                  ),
-                                  Container(
-                                    height: 30,
-                                    width: 100,
-                                    constraints: const BoxConstraints(
-                                      minWidth: 0,
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 3,
-                                    ),
-                                    decoration: ShapeDecoration(
-                                      color: const Color(0xFFFFF7EA),
-                                      shape: RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                            width: 1, color: Color(0xFFE3E3E3)),
-                                        borderRadius: BorderRadius.circular(88),
-                                      ),
-                                    ),
-                                    child: const Row(
-                                      children: [
-                                        Icon(
-                                          Icons.radio_button_checked,
-                                          color: kButtonColor,
-                                        ),
-                                        SizedBox(width: 5),
-                                        Text(
-                                          'Pending',
-                                          style: TextStyle(
-                                            color: Color(0xFF0A0A0A),
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w500,
-                                            height: 1.50,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const Row(
-                                    children: [
-                                      Text(
-                                        'Today',
-                                        style: kHintText,
-                                      ),
-                                      kSmallDot(),
-                                      Text(
-                                        '8:13 AM',
-                                        style: kHintText,
-                                      ),
-                                      kSmallDot(),
-                                      Text.rich(
-                                        TextSpan(children: [
-                                          TextSpan(
-                                            text: '₦',
-                                            style: TextStyle(
-                                              color: Color(0xFF7D7D7D),
-                                              fontSize: 14,
-                                              fontFamily: 'Nai',
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.50,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: '4,130',
-                                            style: kHintText,
-                                          )
-                                        ]),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                            const Expanded(
-                                child: Icon(Icons.arrow_forward, size: 20)),
-                          ],
-                        ),
-                      ),
+                    (index) => const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: OrderItemCard(),
                     ),
                   ),
                 ),
@@ -209,23 +59,6 @@ class OrderHistoryScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class kSmallDot extends StatelessWidget {
-  const kSmallDot({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 5,
-      width: 5,
-      margin: const EdgeInsets.symmetric(horizontal: 5),
-      decoration:
-          const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
     );
   }
 }

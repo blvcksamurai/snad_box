@@ -2,19 +2,29 @@ import 'package:flutter/material.dart';
 
 const Color kButtonColor = Color(0xFFFFBE4C);
 const Color kIconButtonColor = Color(0xfffeebcb);
+const Color kIconButtonColor2 = Color(0xffffe3b2);
 const Color kHeaderTextColor = Color(0xFF0A0A0A);
 const Color kSubHeaderTextColor = Color(0xFF4F4F4F);
 const Color kBodyTextColor = Color(0xff7d848d);
 const Color kformColor = Color(0Xfff7f7f9);
 const Color kGrey = Color(0xFFE3E3E3);
 const Color kBgcolor = Color(0xfffff8eb);
-//avatarbg colors
 
-const Color kAvatar1 = Color(0xffc4ebfc);
-const Color kAvatar2 = Color(0xfffed6a0);
-const Color kAvatar3 = Color(0xffbbf0c4);
-const Color kAvatar4 = Color(0xffe5f4ff);
+//Transaction Status colors
 
+//Delivered Status
+const Color kDelivered = Color(0xFF31D583);
+const Color kDeliveredOuter = Color(0xFFD1FADF);
+
+//Pending Status
+const Color kPending = Color(0xFFFEB101);
+const Color kPendingOuter = Color(0xFFFDE39B);
+
+//Reversed Status
+const Color kReversed = Color(0xFF4F4F4F);
+const Color kReversedOuter = Color(0xFFE3E3E3);
+
+//TextStyles
 const kHeaderText = TextStyle(
   color: kHeaderTextColor,
   fontSize: 28,
@@ -208,6 +218,29 @@ const kOrderHistorySmallText = TextStyle(
   fontFamily: 'Gsa',
   fontWeight: FontWeight.w500,
   height: 1.43,
+);
+
+const kTranHeaderTitle = TextStyle(
+  fontSize: 16,
+  fontFamily: 'Gsa',
+  color: Color(0xFF4F4F4F),
+  fontWeight: FontWeight.w500,
+);
+
+const kTranDetail = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 16,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.bold,
+  height: 1.50,
+);
+
+const kTranTimeline = TextStyle(
+  color: Color(0xFF7D7D7D),
+  fontSize: 12,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.w500,
+  height: 1.40,
 );
 // const kTextFieldInput = InputDecoration(
 //     filled: true,
