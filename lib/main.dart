@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:snad_box/screens/profile/favourites_screen.dart';
 import 'package:snad_box/screens/profile/order_details.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const CustomSplashScreen(),
-      home: const OrderDetailsScreen(),
+      home: const FavouritesScreen(),
     );
   }
 }
