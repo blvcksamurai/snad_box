@@ -55,53 +55,57 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                 childAspectRatio: 0.65, // Adjusted aspect ratio for your widget
               ),
               itemBuilder: (context, index) {
-                return SizedBox(
-                  height: 278,
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                          width: double.infinity,
-                          height: 218,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('assets/images/p_mockup.png'),
-                                fit: BoxFit.cover),
-                            borderRadius: BorderRadius.all(Radius.circular(16)),
-                          ),
-                          padding: const EdgeInsets.all(10),
-                          alignment: Alignment.topLeft,
-                          child: CustomIconButton(
-                            icon: Icons.favorite,
-                            bgColor: Colors.white,
-                            iconColor: Colors.red,
-                            onPressed: () {},
-                          )),
-                      const Text(
-                        'Mockup Water Bottless',
-                        style: kItemTextStyle,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const Text.rich(TextSpan(children: [
-                        TextSpan(
-                            text: '₦ ',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'General',
-                              color: Color(0xFF353535),
-                              fontWeight: FontWeight.w500,
-                            )),
-                        TextSpan(text: '4130', style: kPriceTextStyle)
-                      ])),
-                    ],
-                  ),
-                );
+                return _buildFavouritesItemCard();
               },
               itemCount: 8, // Replace with the actual number of items
             ),
           ))
+        ],
+      ),
+    );
+  }
+
+  SizedBox _buildFavouritesItemCard() {
+    return SizedBox(
+      height: 278,
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+              width: double.infinity,
+              height: 218,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/p_mockup.png'),
+                    fit: BoxFit.cover),
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+              ),
+              padding: const EdgeInsets.all(10),
+              alignment: Alignment.topLeft,
+              child: CustomIconButton(
+                icon: Icons.favorite,
+                bgColor: Colors.white,
+                iconColor: Colors.red,
+                onPressed: () {},
+              )),
+          const Text(
+            'Mockup Water Bottless',
+            style: kItemTextStyle,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const Text.rich(TextSpan(children: [
+            TextSpan(
+                text: '₦ ',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'General',
+                  color: Color(0xFF353535),
+                  fontWeight: FontWeight.w500,
+                )),
+            TextSpan(text: '4130', style: kPriceTextStyle)
+          ])),
         ],
       ),
     );
