@@ -17,7 +17,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: kBgcolor,
         elevation: 0,
         leading: IconButton(
           onPressed: () {},
@@ -43,7 +43,6 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 20),
           Flexible(
               child: Padding(
             padding: const EdgeInsets.all(16.0),
