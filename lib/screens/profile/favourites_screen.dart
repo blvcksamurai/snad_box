@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snad_box/utils/constants.dart';
+import 'package:snad_box/widgets/custom_icon_button.dart';
 import 'package:snad_box/widgets/filter_and_search_widget.dart';
 
 class FavouritesScreen extends StatefulWidget {
@@ -38,10 +39,69 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                   'Favourites',
                   style: kPageHeader,
                 ),
-                kFilterAndSearchIconWidget()
+                kFilterAndSearchIconWidget(),
               ],
             ),
           ),
+          const SizedBox(height: 20),
+          Flexible(
+              child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Maximum of 2 items per row
+                mainAxisSpacing: 20.0, // Spacing between rows
+                crossAxisSpacing: 16.0, // Spacing between columns
+                childAspectRatio: 0.65, // Adjusted aspect ratio for your widget
+              ),
+              itemBuilder: (context, index) {
+                return SizedBox(
+                  height: 278,
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                          width: double.infinity,
+                          height: 218,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/p_mockup.png'),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                          ),
+                          padding: const EdgeInsets.all(10),
+                          alignment: Alignment.topLeft,
+                          child: CustomIconButton(
+                            icon: Icons.favorite,
+                            bgColor: Colors.white,
+                            iconColor: Colors.red,
+                            onPressed: () {},
+                          )),
+                      const Text(
+                        'Mockup Water Bottless',
+                        style: kItemTextStyle,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const Text.rich(TextSpan(children: [
+                        TextSpan(
+                            text: '₦ ',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: 'General',
+                              color: Color(0xFF353535),
+                              fontWeight: FontWeight.w500,
+                            )),
+                        TextSpan(text: '4130', style: kPriceTextStyle)
+                      ])),
+                    ],
+                  ),
+                );
+              },
+              itemCount: 8, // Replace with the actual number of items
+            ),
+          ))
         ],
       ),
     );

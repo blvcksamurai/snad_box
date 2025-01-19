@@ -6,11 +6,13 @@ class CustomIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData icon;
   final Color? bgColor;
+  final Color? iconColor;
   const CustomIconButton({
     this.onPressed,
     required this.icon,
     super.key,
     this.bgColor = kIconButtonColor,
+    this.iconColor = Colors.black,
   });
 
   @override
@@ -26,6 +28,7 @@ class CustomIconButton extends StatelessWidget {
         child: Icon(
           icon,
           size: 20,
+          color: iconColor,
         ),
       ),
     );

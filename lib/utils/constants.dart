@@ -148,7 +148,7 @@ const kPriceTextStyle = TextStyle(
   fontSize: 14,
   fontFamily: 'Gsa',
   fontWeight: FontWeight.w500,
-  height: 1.43,
+  height: 1.44,
 );
 
 const kProductName = TextStyle(
