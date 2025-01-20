@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../utils/constants.dart';
 import 'custom_icon_button.dart';
@@ -33,7 +34,7 @@ class ForYouItems extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: CustomIconButton(
                   onPressed: () {},
-                  icon: Icons.favorite_outline,
+                  icon: Iconsax.heart,
                   bgColor: Colors.white,
                 ),
               )

@@ -100,25 +100,29 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               print(selectedIndex);
                             });
                           },
-                          child: Container(
-                            width: 158,
-                            height: 32,
-                            decoration: BoxDecoration(
-                                color: selectedIndex == 0
-                                    ? kIconButtonColor2
-                                    : Colors.transparent,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(32)),
-                                border: Border.all(
-                                  width: 1,
+                          child: Expanded(
+                            child: Container(
+                              // width: 158,
+                              height: 32,
+                              decoration: BoxDecoration(
                                   color: selectedIndex == 0
                                       ? kIconButtonColor2
-                                      : kGrey,
-                                )),
-                            alignment: Alignment.center,
-                            child: const Text(
-                              'Transaction Details',
-                              style: kFormLabelText,
+                                      : Colors.transparent,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(32)),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: selectedIndex == 0
+                                        ? kIconButtonColor2
+                                        : kGrey,
+                                  )),
+                              alignment: Alignment.center,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 7),
+                              child: const Text(
+                                'Transaction Details',
+                                style: kFormLabelText,
+                              ),
                             ),
                           ),
                         ),
@@ -131,7 +135,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             });
                           },
                           child: Container(
-                            width: 158,
+                            // width: 158,
                             height: 32,
                             decoration: BoxDecoration(
                                 color: selectedIndex == 1
@@ -146,6 +150,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       : kGrey,
                                 )),
                             alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(horizontal: 7),
+
                             child: const Expanded(
                               child: Text(
                                 'Transaction Timeline',

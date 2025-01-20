@@ -7,12 +7,14 @@ class CustomIconRating extends StatelessWidget {
   final IconData icon;
   final Color? bgColor;
   final double rating;
+  final double? size;
   const CustomIconRating({
     this.onPressed,
     required this.icon,
     super.key,
     this.bgColor = kIconButtonColor,
     required this.rating,
+    this.size = 16,
   });
 
   @override
@@ -20,17 +22,21 @@ class CustomIconRating extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 54,
         height: 26,
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+        constraints: const BoxConstraints(
+          minWidth: 0,
+          maxWidth: 60,
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
         decoration: BoxDecoration(
             color: bgColor, borderRadius: BorderRadius.circular(10)),
         child: Row(
           children: [
             Icon(
               icon,
-              size: 20,
+              size: 16,
             ),
+            const SizedBox(width: 5),
             Text(
               rating.toString(),
               style: kPriceTextStyle,

@@ -29,7 +29,7 @@ class kFilterAndSearchIconWidget extends StatelessWidget {
             children: [
               Icon(
                 Iconsax.filter,
-                size: 20,
+                size: 16,
               ),
               SizedBox(
                 width: 5,
@@ -53,7 +53,7 @@ class kFilterAndSearchIconWidget extends StatelessWidget {
           ),
           child: const Icon(
             Iconsax.search_normal_1,
-            size: 20,
+            size: 16,
           ),
         )
       ],

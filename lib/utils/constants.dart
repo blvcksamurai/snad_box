@@ -24,6 +24,15 @@ const Color kPendingOuter = Color(0xFFFDE39B);
 const Color kReversed = Color(0xFF4F4F4F);
 const Color kReversedOuter = Color(0xFFE3E3E3);
 
+//Transaction History Item Status Colors
+
+const Color kArrowColor1 = Color(0xFFe59100);
+const Color kArrowColor2 = Colors.black;
+const Color kStatus1 = Color(0xffffe3b2);
+const Color kStatus2 = Color(0xffe2e2e2);
+const Color kPStatus1 = Color(0xFF039754);
+const Color kPStatus2 = Color(0xffa3a3a3);
+
 //TextStyles
 const kHeaderText = TextStyle(
   color: kHeaderTextColor,

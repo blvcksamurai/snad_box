@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:snad_box/utils/constants.dart';
 import 'package:snad_box/widgets/custom_icon_button.dart';
 import 'package:snad_box/widgets/filter_and_search_widget.dart';
@@ -48,11 +49,11 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             padding: const EdgeInsets.all(16.0),
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Maximum of 2 items per row
-                mainAxisSpacing: 20.0, // Spacing between rows
-                crossAxisSpacing: 16.0, // Spacing between columns
-                childAspectRatio: 0.65, // Adjusted aspect ratio for your widget
-              ),
+                  crossAxisCount: 2, // Maximum of 2 items per row
+                  mainAxisSpacing: 10.0, // Spacing between rows
+                  crossAxisSpacing: 16.0, // Spacing between columns
+                  childAspectRatio: 0.5,
+                  mainAxisExtent: 300),
               itemBuilder: (context, index) {
                 return _buildFavouritesItemCard();
               },
@@ -70,7 +71,6 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
               width: double.infinity,
@@ -84,7 +84,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               padding: const EdgeInsets.all(10),
               alignment: Alignment.topLeft,
               child: CustomIconButton(
-                icon: Icons.favorite,
+                icon: Iconsax.heart,
                 bgColor: Colors.white,
                 iconColor: Colors.red,
                 onPressed: () {},
@@ -94,6 +94,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             style: kItemTextStyle,
             overflow: TextOverflow.ellipsis,
           ),
+          const SizedBox(height: 10),
           const Text.rich(TextSpan(children: [
             TextSpan(
                 text: '₦ ',

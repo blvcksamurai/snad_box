@@ -197,7 +197,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   _buildForYouSection(),
                   const SizedBox(height: 20),
                   _buildStoresSection(),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: HeroCardTile())
@@ -275,7 +275,7 @@ Widget _buildForYouSection() {
         ),
         const SizedBox(height: 15),
         SizedBox(
-          height: 230,
+          height: 240,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 4,

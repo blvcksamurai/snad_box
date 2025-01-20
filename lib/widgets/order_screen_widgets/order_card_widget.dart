@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:snad_box/widgets/order_screen_widgets/transaction_status_widget.dart';
 
 import '../../utils/constants.dart';
+import '../custom_time_stamp.dart';
+import 'transaction_status_widget.dart';
 
 class OrderItemCard extends StatelessWidget {
   const OrderItemCard({
@@ -44,65 +45,6 @@ class OrderItemCard extends StatelessWidget {
           const Expanded(child: Icon(Icons.arrow_forward, size: 20)),
         ],
       ),
-    );
-  }
-}
-
-class CustomTimeStampAndPrice extends StatelessWidget {
-  const CustomTimeStampAndPrice({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Text(
-          'Today',
-          style: kHintText,
-        ),
-        kSmallDot(),
-        Text(
-          '8:13 AM',
-          style: kHintText,
-        ),
-        kSmallDot(),
-        Text.rich(
-          TextSpan(children: [
-            TextSpan(
-              text: '₦',
-              style: TextStyle(
-                color: Color(0xFF7D7D7D),
-                fontSize: 14,
-                fontFamily: 'Nai',
-                fontWeight: FontWeight.w400,
-                height: 1.50,
-              ),
-            ),
-            TextSpan(
-              text: '4,130',
-              style: kHintText,
-            )
-          ]),
-        )
-      ],
-    );
-  }
-}
-
-class kSmallDot extends StatelessWidget {
-  const kSmallDot({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 5,
-      width: 5,
-      margin: const EdgeInsets.symmetric(horizontal: 5),
-      decoration:
-          const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
     );
   }
 }
