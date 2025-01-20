@@ -88,6 +88,48 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                   ),
                   const SizedBox(height: 20),
                   //TODO: //ListView builder for the transaction history ListView
+                  const TrasactionHistoryItem(
+                    status: true,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: false,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: true,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: false,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: true,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: true,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: false,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: true,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: false,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: true,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: true,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: false,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: true,
+                  ),
+                  const TrasactionHistoryItem(
+                    status: false,
+                  ),
                 ],
               ),
             ),
