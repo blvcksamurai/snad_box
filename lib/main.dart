@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:snad_box/screens/explore_screen.dart';
-import 'package:snad_box/screens/landing/home_screen.dart';
-import 'package:snad_box/screens/profile/favourites_screen.dart';
-import 'package:snad_box/screens/profile/order_details.dart';
-import 'package:snad_box/screens/profile/profile_screen.dart';
-import 'package:snad_box/screens/transactionHistory/transaction_history.dart';
+import 'package:snad_box/routes/custom_bottom_nav_bar.dart';
+import 'package:snad_box/views/explore_screen.dart';
+import 'package:snad_box/views/landing/home_screen.dart';
+import 'package:snad_box/views/profile/favourites_screen.dart';
+import 'package:snad_box/views/profile/order_details.dart';
+import 'package:snad_box/views/profile/profile_screen.dart';
+import 'package:snad_box/views/transactionHistory/transaction_history.dart';
+
+import 'views/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +33,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const CustomSplashScreen(),
-      home: const TransactionHistoryScreen(),
+      home: const CustomBottomNavBar(),
+      // home: const TransactionHistoryScreen(),
     );
   }
 }

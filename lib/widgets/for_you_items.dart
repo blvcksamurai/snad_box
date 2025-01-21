@@ -21,24 +21,23 @@ class ForYouItems extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              Container(
-                width: 143,
-                height: 171,
-                decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(16)),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: CustomIconButton(
-                  onPressed: () {},
-                  icon: Iconsax.heart,
-                  bgColor: Colors.white,
-                ),
-              )
-            ],
+          Container(
+            width: 143,
+            height: 171,
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                  image: AssetImage('assets/images/p_mockup3.png'),
+                  fit: BoxFit.cover),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: const EdgeInsets.all(10),
+            alignment: Alignment.topLeft,
+            child: CustomIconButton(
+              onPressed: () {},
+              icon: Iconsax.heart,
+              iconSize: 20,
+              bgColor: Colors.white,
+            ),
           ),
           const SizedBox(height: 10),
           SizedBox(

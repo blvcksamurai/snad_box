@@ -19,7 +19,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: kBgcolor,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -81,7 +81,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(height: 16),
                   // TODO: Use a ListTile here later
                   SettingOption(
-                    icon: Iconsax.user,
+                    icon: Iconsax.profile_circle,
                     title: 'Your Profile',
                     route: () {},
                   ),

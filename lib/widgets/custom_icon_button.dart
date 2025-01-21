@@ -5,6 +5,7 @@ import '../utils/constants.dart';
 class CustomIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData icon;
+  final double? iconSize;
   final Color? bgColor;
   final Color? iconColor;
   const CustomIconButton({
@@ -13,6 +14,7 @@ class CustomIconButton extends StatelessWidget {
     super.key,
     this.bgColor = kIconButtonColor,
     this.iconColor = Colors.black,
+    this.iconSize = 16,
   });
 
   @override
@@ -27,7 +29,7 @@ class CustomIconButton extends StatelessWidget {
             color: bgColor, borderRadius: BorderRadius.circular(10)),
         child: Icon(
           icon,
-          size: 16,
+          size: iconSize,
           color: iconColor,
         ),
       ),
