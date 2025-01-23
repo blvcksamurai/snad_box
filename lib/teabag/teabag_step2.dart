@@ -7,14 +7,14 @@ import '../../utils/constants.dart';
 import '../../widgets/custom_btn.dart';
 import '../widgets/input_widgets/custom_input_field.dart';
 
-class StepTwo extends StatefulWidget {
-  const StepTwo({super.key});
+class TeabagStepTwo extends StatefulWidget {
+  const TeabagStepTwo({super.key});
 
   @override
-  State<StepTwo> createState() => _StepTwoState();
+  State<TeabagStepTwo> createState() => _TeabagStepTwoState();
 }
 
-class _StepTwoState extends State<StepTwo> {
+class _TeabagStepTwoState extends State<TeabagStepTwo> {
   String? selectedState; // To store the selected state
   String? selectedLGA; // To store the selected LGA
 

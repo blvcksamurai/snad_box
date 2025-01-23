@@ -12,7 +12,7 @@ class OrderHistoryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: kBgcolor,
         elevation: 0,
         leading: IconButton(
           onPressed: () {},

@@ -4,8 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../utils/constants.dart';
 import '../../widgets/custom_btn.dart';
 
-class OnbardingScreen extends StatelessWidget {
-  const OnbardingScreen({super.key});
+class OnboardingScreen extends StatelessWidget {
+  const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class OnbardingScreen extends StatelessWidget {
             const Spacer(),
             SizedBox(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.35,
+              // height: MediaQuery.of(context).size.height * 0.45,
               child: SvgPicture.asset(
                 'assets/images/illu_1.svg',
                 fit: BoxFit.fitWidth,

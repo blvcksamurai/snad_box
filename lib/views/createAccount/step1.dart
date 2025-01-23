@@ -12,28 +12,38 @@ class StepOne extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBgcolor,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(),
-                const SizedBox(height: 20),
-                _buildStepIndicator(),
-                const SizedBox(height: 20),
-                _buildIntroText(),
-                const SizedBox(height: 20),
-                _buildForm(),
-                const SizedBox(height: 40),
-                _buildNextButton(),
-                const SizedBox(height: 20),
-                _buildLoginPrompt(),
-              ],
+      appBar: AppBar(
+        backgroundColor: kBgcolor,
+        title: _buildHeader(),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: _buildStepIndicator(),
+          ),
+          Flexible(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    _buildIntroText(),
+                    const SizedBox(height: 20),
+                    _buildForm(),
+                    const SizedBox(height: 40),
+                    _buildNextButton(),
+                    const SizedBox(height: 20),
+                    _buildLoginPrompt(),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

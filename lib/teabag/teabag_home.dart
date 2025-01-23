@@ -9,14 +9,14 @@ import '../../widgets/hero_card_tile.dart';
 import '../widgets/large_text_with_icon.dart';
 import '../../widgets/stores_card_item.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class TeabagHomeScreen extends StatefulWidget {
+  const TeabagHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TeabagHomeScreen> createState() => _TeabagHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TeabagHomeScreenState extends State<TeabagHomeScreen> {
   final ApiService apiService = ApiService();
 
   @override

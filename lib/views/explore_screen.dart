@@ -40,129 +40,136 @@ class _ExploreScreenState extends State<ExploreScreen> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
-      builder: (context) {
-        return FractionallySizedBox(
-          heightFactor: 0.5, // Set the height to 50% of the screen
-          child: StatefulBuilder(
-            builder: (context, setModalState) {
-              // Ensure selected state appears at the top
-              List<String> sortedStates = [
-                tempSelectedState,
-                ...filteredStates.where((state) => state != tempSelectedState)
-              ];
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+            initialChildSize: 0.6, // Default height: 60%
+            minChildSize: 0.6, // Minimum height: 60%
+            maxChildSize: 0.8, // Maximum height: 80%
+            expand: false, // Allows snapping to sizes
+            builder: (context, scrollController) {
+              return StatefulBuilder(
+                builder: (context, setModalState) {
+                  // Ensure selected state appears at the top
+                  List<String> sortedStates = [
+                    tempSelectedState,
+                    ...filteredStates
+                        .where((state) => state != tempSelectedState)
+                  ];
 
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Select a State',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Select a State',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(Iconsax.close_circle))
+                          ],
                         ),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
+                        const SizedBox(height: 16),
+                        CustomInputField(
+                          searchInput: true,
+                          prefixIcon: const Icon(
+                            Iconsax.search_normal_1,
+                            color: Colors.grey,
+                          ),
+                          hintText: 'Search for a state',
+                          onchanged: (value) {
+                            setModalState(() {
+                              filteredStates = states
+                                  .where((state) => state
+                                      .toLowerCase()
+                                      .contains(value.toLowerCase()))
+                                  .toList();
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 10),
+                        Expanded(
+                          child: ListView.builder(
+                            controller: scrollController,
+                            itemCount: sortedStates.length,
+                            itemBuilder: (context, index) {
+                              final state = sortedStates[index];
+
+                              return Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          setModalState(() {
+                                            tempSelectedState = state;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          size: 30,
+                                          state == tempSelectedState
+                                              ? Icons.radio_button_checked
+                                              : Icons.radio_button_unchecked,
+                                          color: state == tempSelectedState
+                                              ? kButtonColor
+                                              : const Color(0xffffe3b2),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        state,
+                                        style: kFormLabelText,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              );
+                              // return ListTile(
+
+                              //   leading: Icon(
+                              //     size: 30,
+                              //     state == tempSelectedState
+                              //         ? Icons.radio_button_checked
+                              //         : Icons.radio_button_unchecked,
+                              //     color: state == tempSelectedState
+                              //         ? kButtonColor
+                              //         : const Color(0xffffe3b2),
+                              //   ),
+                              //   title: Text(state),
+                              //   onTap: () {
+                              //     setModalState(() {
+                              //       tempSelectedState = state;
+                              //     });
+                              //   },
+                              // );
                             },
-                            icon: const Icon(Iconsax.close_circle))
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        CustomButton(
+                          text: 'Save',
+                          onPressed: () {
+                            setState(() {
+                              selectedState = tempSelectedState;
+                            });
+                            Navigator.pop(context);
+                          },
+                        )
                       ],
                     ),
-                    const SizedBox(height: 16),
-                    CustomInputField(
-                      prefixIcon: const Icon(
-                        Iconsax.search_normal_1,
-                        color: Colors.grey,
-                      ),
-                      hintText: 'Search for a state',
-                      onchanged: (value) {
-                        setModalState(() {
-                          filteredStates = states
-                              .where((state) => state
-                                  .toLowerCase()
-                                  .contains(value.toLowerCase()))
-                              .toList();
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: sortedStates.length,
-                        itemBuilder: (context, index) {
-                          final state = sortedStates[index];
-
-                          return Column(
-                            children: [
-                              Row(
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      setModalState(() {
-                                        tempSelectedState = state;
-                                      });
-                                    },
-                                    icon: Icon(
-                                      size: 30,
-                                      state == tempSelectedState
-                                          ? Icons.radio_button_checked
-                                          : Icons.radio_button_unchecked,
-                                      color: state == tempSelectedState
-                                          ? kButtonColor
-                                          : const Color(0xffffe3b2),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                    state,
-                                    style: kFormLabelText,
-                                  )
-                                ],
-                              ),
-                            ],
-                          );
-                          // return ListTile(
-
-                          //   leading: Icon(
-                          //     size: 30,
-                          //     state == tempSelectedState
-                          //         ? Icons.radio_button_checked
-                          //         : Icons.radio_button_unchecked,
-                          //     color: state == tempSelectedState
-                          //         ? kButtonColor
-                          //         : const Color(0xffffe3b2),
-                          //   ),
-                          //   title: Text(state),
-                          //   onTap: () {
-                          //     setModalState(() {
-                          //       tempSelectedState = state;
-                          //     });
-                          //   },
-                          // );
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    CustomButton(
-                      text: 'Save',
-                      onPressed: () {
-                        setState(() {
-                          selectedState = tempSelectedState;
-                        });
-                        Navigator.pop(context);
-                      },
-                    )
-                  ],
-                ),
+                  );
+                },
               );
-            },
-          ),
-        );
+            });
       },
     );
   }

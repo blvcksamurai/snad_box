@@ -5,8 +5,8 @@ import '../../utils/constants.dart';
 import '../../widgets/custom_btn.dart';
 import '../widgets/input_widgets/custom_input_field.dart';
 
-class StepOne extends StatelessWidget {
-  const StepOne({super.key});
+class TeabagStepOne extends StatelessWidget {
+  const TeabagStepOne({super.key});
 
   @override
   Widget build(BuildContext context) {

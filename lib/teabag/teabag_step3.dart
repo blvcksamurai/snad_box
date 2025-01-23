@@ -9,14 +9,14 @@ import 'package:snad_box/widgets/input_widgets/custom_password_field.dart';
 
 import '../../widgets/custom_btn.dart';
 
-class StepThree extends StatefulWidget {
-  const StepThree({super.key});
+class TeabagStepThree extends StatefulWidget {
+  const TeabagStepThree({super.key});
 
   @override
-  State<StepThree> createState() => _StepThreeState();
+  State<TeabagStepThree> createState() => _TeabagStepThreeState();
 }
 
-class _StepThreeState extends State<StepThree> {
+class _TeabagStepThreeState extends State<TeabagStepThree> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
