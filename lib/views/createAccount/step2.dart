@@ -69,6 +69,7 @@ class _StepTwoState extends State<StepTwo> {
                           ),
                           const SizedBox(height: 10),
                           CustomInputField(
+                            searchInput: true,
                             hintText: 'Search for your $searchHint',
                             controller: searchController,
                             onchanged: filterItems,
@@ -116,31 +117,41 @@ class _StepTwoState extends State<StepTwo> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBgcolor,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(),
-                const SizedBox(height: 20),
-                _buildStepIndicator(),
-                const SizedBox(height: 20),
-                _buildIntroText(),
-                const SizedBox(height: 20),
-                _buildForm(),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height *
-                      0.2, // Responsive space
+      appBar: AppBar(
+        backgroundColor: kBgcolor,
+        title: _buildHeader(),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: _buildStepIndicator(),
+          ),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    _buildIntroText(),
+                    const SizedBox(height: 20),
+                    _buildForm(),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height *
+                          0.2, // Responsive space
+                    ),
+                    _buildNextButton(),
+                    const SizedBox(height: 20),
+                    _buildLoginPrompt(),
+                  ],
                 ),
-                _buildNextButton(),
-                const SizedBox(height: 20),
-                _buildLoginPrompt(),
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -150,7 +161,6 @@ class _StepTwoState extends State<StepTwo> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SvgPicture.asset('assets/images/o_logo.svg'),
-        const SizedBox(width: 10),
       ],
     );
   }

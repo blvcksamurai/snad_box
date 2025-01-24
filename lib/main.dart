@@ -6,8 +6,11 @@ import 'package:snad_box/teabag/teabag_step1.dart';
 import 'package:snad_box/teabag/teabag_step2.dart';
 import 'package:snad_box/teabag/teabag_step3.dart';
 import 'package:snad_box/views/createAccount/step1.dart';
+import 'package:snad_box/views/createAccount/step2.dart';
+import 'package:snad_box/views/createAccount/step3.dart';
 import 'package:snad_box/views/explore_screen.dart';
 import 'package:snad_box/views/landing/home_screen.dart';
+import 'package:snad_box/views/onboarding/onboarding_flow.dart';
 import 'package:snad_box/views/onboarding/onboarding_screen.dart';
 import 'package:snad_box/views/products/product_description.dart';
 import 'package:snad_box/views/profile/favourites_screen.dart';
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const CustomSplashScreen(),
-      home: const StepOne(),
+      home: const OnboardingFlow(),
       // home: const HomeScreen(),
     );
   }

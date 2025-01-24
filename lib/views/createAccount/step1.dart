@@ -30,7 +30,6 @@ class StepOne extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 20),
                     _buildIntroText(),
                     const SizedBox(height: 20),
                     _buildForm(),

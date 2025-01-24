@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:snad_box/utils/constants.dart';
-import 'package:snad_box/widgets/input_widgets/custom_input_field.dart';
 import 'package:snad_box/widgets/input_widgets/custom_password_field.dart';
 import 'package:snad_box/widgets/custom_btn.dart';
 
@@ -53,27 +51,35 @@ class _StepThreeState extends State<StepThree> {
 
     return Scaffold(
       backgroundColor: kBgcolor,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(),
-                const SizedBox(height: 20),
-                _buildStepIndicator(),
-                const SizedBox(height: 20),
-                _buildIntroText(),
-                const SizedBox(height: 20),
-                _buildPasswordForm(),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                _buildCreateAccountButton(allConditionsMet),
-                const SizedBox(height: 20),
-                _buildLoginPrompt(),
-              ],
+      appBar: AppBar(
+        title: _buildHeader(),
+        backgroundColor: kBgcolor,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildStepIndicator(),
+            const SizedBox(height: 10),
+            Flexible(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildIntroText(),
+                    const SizedBox(height: 20),
+                    _buildPasswordForm(),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                    _buildCreateAccountButton(allConditionsMet),
+                    const SizedBox(height: 20),
+                    _buildLoginPrompt(),
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
