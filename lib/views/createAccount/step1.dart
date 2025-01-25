@@ -143,7 +143,7 @@ class StepOne extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text('Already have an account? ', style: kSubHeaderText),
-        InkWell(
+        GestureDetector(
           onTap: () {},
           child: const Text('Log In', style: kSubHeaderText2),
         ),
