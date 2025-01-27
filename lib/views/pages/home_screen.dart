@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: _buildHeader(),
         backgroundColor: Colors.transparent,
       ),
@@ -47,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               _buildCategoriesSection(),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.15,
+                height: MediaQuery.of(context).size.height * 0.05,
               ),
             ],
           ),
@@ -180,82 +181,71 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildCategoriesSection() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 10),
-          Container(
-            width: double.infinity, // Allow the container to take full width
-            constraints: const BoxConstraints(minHeight: 90),
-            child: GridView.builder(
-              shrinkWrap: true, // Prevent GridView from scrolling independently
-              physics:
-                  const NeverScrollableScrollPhysics(), // Disable GridView scrolling
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, // Display 3 items per row
-                crossAxisSpacing: 10, // Spacing between columns
-                mainAxisSpacing: 10, // Spacing between rows
-                childAspectRatio:
-                    2.5, // Adjust the aspect ratio to fit your design
-              ),
-              itemCount: 6, // Total number of categories
-              itemBuilder: (context, index) {
-                final categories = [
-                  {'name': ' Appliances', 'emoji': '📺'},
-                  {'name': ' Food Stuffs', 'emoji': '🍎'},
-                  {'name': ' Devices', 'emoji': '📱'},
-                  {'name': ' Electronics', 'emoji': '🔌'},
-                  {'name': ' Fashion', 'emoji': '👗'},
-                  {'name': ' Computing', 'emoji': '💻'},
-                ];
-                return CategoriesItem(
-                  categoryName: categories[index]['name']!,
-                  emoji: categories[index]['emoji']!,
-                );
-              },
+    return const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Wrap(
+          spacing: 10.0, // Space between each item
+          runSpacing: 10.0, // Space between the rows
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            CategoriesButtonWidget(
+              categoryName: '📺 Appliances',
             ),
-          )
-        ],
-      ),
-    );
+            CategoriesButtonWidget(
+              categoryName: '😋 Food Stuffs',
+            ),
+            CategoriesButtonWidget(
+              categoryName: '📱 Devices',
+            ),
+            CategoriesButtonWidget(
+              categoryName: '💡 Electronics',
+            ),
+            CategoriesButtonWidget(
+              categoryName: '👔 Fashion',
+            ),
+            CategoriesButtonWidget(
+              categoryName: '💻 Computing',
+            ),
+          ],
+        ));
   }
 }
 
-class CategoriesItem extends StatelessWidget {
+class CategoriesButtonWidget extends StatelessWidget {
   final String categoryName;
-  final String emoji;
-  const CategoriesItem(
-      {super.key, required this.categoryName, required this.emoji});
+
+  const CategoriesButtonWidget({
+    super.key,
+    required this.categoryName,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      constraints: const BoxConstraints(
-        minWidth: 0,
-      ),
-      // padding: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        color: kIconButtonColor,
-        borderRadius: BorderRadius.circular(72),
-      ),
-      child: Center(
-        child: Text.rich(TextSpan(children: [
-          TextSpan(text: emoji, style: kCategoriesTextStyle),
-          TextSpan(text: categoryName, style: kCategoriesTextStyle)
-        ])),
-      ),
-      // child: const Row(
-      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //   children: [
-      //     Text('📺', style: kCategoriesTextStyle),
-      //     Expanded(
-      //       child: Text('Food Stuffs', style: kCategoriesTextStyle),
-      //     ),
-      //   ],
-      // ),
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+          height: 30,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          constraints: const BoxConstraints(
+            minWidth: 1,
+            maxWidth: double.infinity,
+          ),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(72)),
+            color: kIconButtonColor,
+          ),
+          child: Text(
+            categoryName,
+            style: kCategoriesTextStyle,
+          )),
     );
   }
 }
+//           final categories = [
+        //             {'name': ' Appliances', 'emoji': '📺'},
+        //             {'name': ' Food Stuffs', 'emoji': '🍎'},
+        //             {'name': ' Devices', 'emoji': '📱'},
+        //             {'name': ' Electronics', 'emoji': '🔌'},
+        //             {'name': ' Fashion', 'emoji': '👗'},
+        //             {'name': ' Computing', 'emoji': '💻'},
+        //           ];

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
+import 'package:snad_box/views/createAccount/step3.dart';
 
 import '../../utils/constants.dart';
 import '../../widgets/custom_btn.dart';
@@ -15,8 +16,30 @@ class StepTwo extends StatefulWidget {
 }
 
 class _StepTwoState extends State<StepTwo> {
+  final _formKey = GlobalKey<FormState>(); // Form key for validation
   String? selectedState;
   String? selectedLGA;
+  final TextEditingController _addressController = TextEditingController();
+
+  @override
+  void dispose() {
+    _addressController.dispose(); // Dispose the controller when not needed
+    super.dispose();
+  }
+
+  void _validateAndProceed() {
+    if (_formKey.currentState?.validate() ?? false) {
+      //Step Three Navi
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const StepThree(),
+        ),
+      );
+    } else {
+      print('Form is invalid. Check the fields.');
+    }
+  }
 
   void _showSearchableBottomSheet({
     required BuildContext context,
@@ -118,6 +141,7 @@ class _StepTwoState extends State<StepTwo> {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: kBgcolor,
         title: _buildHeader(),
       ),
@@ -132,21 +156,26 @@ class _StepTwoState extends State<StepTwo> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 20),
-                    _buildIntroText(),
-                    const SizedBox(height: 20),
-                    _buildForm(),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height *
-                          0.2, // Responsive space
-                    ),
-                    _buildNextButton(),
-                    const SizedBox(height: 20),
-                    _buildLoginPrompt(),
-                  ],
+                child: Form(
+                  key: _formKey, // Assign the form key here
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 20),
+                      _buildIntroText(),
+                      const SizedBox(height: 20),
+                      _buildForm(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                      ),
+                      CustomButton(
+                        text: 'Next',
+                        onPressed: _validateAndProceed, // Validate on press
+                      ),
+                      const SizedBox(height: 20),
+                      _buildLoginPrompt(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -197,7 +226,17 @@ class _StepTwoState extends State<StepTwo> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildInputField(label: 'Address', hintText: 'Enter your address'),
+        _buildInputField(
+          label: 'Address',
+          hintText: 'Enter your address',
+          controller: _addressController,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Address is required';
+            }
+            return null;
+          },
+        ),
         const SizedBox(height: 10),
         _buildDropdown(
           label: 'State',
@@ -225,13 +264,22 @@ class _StepTwoState extends State<StepTwo> {
     );
   }
 
-  Widget _buildInputField({required String label, required String hintText}) {
+  Widget _buildInputField({
+    required String label,
+    required String hintText,
+    TextEditingController? controller,
+    String? Function(String?)? validator,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: kFormLabelText),
         const SizedBox(height: 10),
-        CustomInputField(hintText: hintText),
+        CustomInputField(
+          hintText: hintText,
+          controller: controller,
+          validator: validator,
+        ),
       ],
     );
   }
@@ -283,10 +331,6 @@ class _StepTwoState extends State<StepTwo> {
         ),
       ],
     );
-  }
-
-  Widget _buildNextButton() {
-    return CustomButton(text: 'Next');
   }
 
   Widget _buildLoginPrompt() {

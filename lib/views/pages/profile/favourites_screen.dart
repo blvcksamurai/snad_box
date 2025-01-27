@@ -18,6 +18,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(

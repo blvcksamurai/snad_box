@@ -51,6 +51,7 @@ class _StepOneState extends State<StepOne> {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: kBgcolor,
         title: _buildHeader(),
       ),
@@ -196,6 +197,9 @@ class _StepOneState extends State<StepOne> {
             //more conditionals
             if (value.length < 10) {
               return 'Enter a valid phone number';
+            }
+            if (value.length > 11) {
+              return 'Phone number cannot exceed 11 characters';
             }
             return null;
           },

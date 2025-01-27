@@ -8,8 +8,8 @@ import 'package:snad_box/widgets/custom_btn.dart';
 import 'package:snad_box/widgets/input_widgets/custom_input_field.dart';
 import 'package:snad_box/widgets/item_counter.dart';
 
-import '../../widgets/cart_widgets/cart_item_card.dart';
-import '../../widgets/cart_widgets/cart_total_fab.dart';
+import '../../../widgets/cart_widgets/cart_item_card.dart';
+import '../../../widgets/cart_widgets/cart_total_fab.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -27,6 +27,7 @@ class _CartScreenState extends State<CartScreen> {
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       // floatingActionButton: const CartTotalFAB(),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

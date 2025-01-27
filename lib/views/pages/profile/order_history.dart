@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:snad_box/utils/constants.dart';
 
-import '../../widgets/filter_and_search_widget.dart';
-import '../../widgets/order_screen_widgets/order_card_widget.dart';
+import '../../../widgets/filter_and_search_widget.dart';
+import '../../../widgets/order_screen_widgets/order_card_widget.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
   const OrderHistoryScreen({super.key});
@@ -12,6 +12,7 @@ class OrderHistoryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: kBgcolor,
         elevation: 0,
         leading: IconButton(

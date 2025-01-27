@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snad_box/utils/constants.dart';
 
-import '../../widgets/custom_btn.dart';
+import '../../../widgets/custom_btn.dart';
 
 class kTests extends StatelessWidget {
   const kTests({super.key});

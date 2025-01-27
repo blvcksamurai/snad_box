@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:snad_box/utils/constants.dart';
-import 'package:snad_box/views/cart/cart_screen.dart';
-import 'package:snad_box/views/explore_screen.dart';
-import 'package:snad_box/views/landing/home_screen.dart';
-import 'package:snad_box/views/profile/profile_screen.dart';
+import 'package:snad_box/views/pages/cart/cart_screen.dart';
+import 'package:snad_box/views/pages/explore_screen.dart';
+import 'package:snad_box/views/pages/home_screen.dart';
+import 'package:snad_box/views/pages/profile/profile_screen.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
