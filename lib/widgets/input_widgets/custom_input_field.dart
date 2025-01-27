@@ -6,8 +6,11 @@ class CustomInputField extends StatelessWidget {
   final String hintText;
   TextEditingController? controller;
   Function(String)? onchanged;
+
   Widget? prefixIcon;
   bool searchInput;
+  String? Function(String?)? validator;
+  TextInputType? keyboardType;
 
   CustomInputField({
     super.key,
@@ -15,12 +18,16 @@ class CustomInputField extends StatelessWidget {
     this.onchanged,
     this.prefixIcon,
     this.searchInput = false,
+    this.keyboardType,
+    this.validator,
     required this.hintText,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      keyboardType: keyboardType,
+      validator: validator,
       controller: controller,
       onChanged: onchanged,
       cursorColor: kButtonColor,

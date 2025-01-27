@@ -1,12 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:snad_box/views/createAccount/step2.dart';
 
 import '../../utils/constants.dart';
 import '../../widgets/custom_btn.dart';
 import '../../widgets/input_widgets/custom_input_field.dart';
 
-class StepOne extends StatelessWidget {
+class StepOne extends StatefulWidget {
   const StepOne({super.key});
+
+  @override
+  State<StepOne> createState() => _StepOneState();
+}
+
+class _StepOneState extends State<StepOne> {
+  final _formKey = GlobalKey<FormState>();
+
+  // Controllers for each field
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Dispose controllers when no longer needed
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _phoneNumberController.dispose();
+    _usernameController.dispose();
+    super.dispose();
+  }
+
+  void _handleNext() {
+    if (_formKey.currentState?.validate() ?? false) {
+      // Navigate to the next page
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const StepTwo(),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +62,26 @@ class StepOne extends StatelessWidget {
             child: _buildStepIndicator(),
           ),
           Flexible(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildIntroText(),
-                    const SizedBox(height: 20),
-                    _buildForm(),
-                    const SizedBox(height: 40),
-                    _buildNextButton(),
-                    const SizedBox(height: 20),
-                    _buildLoginPrompt(),
-                  ],
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildIntroText(),
+                      const SizedBox(height: 20),
+                      _buildForm(),
+                      const SizedBox(height: 40),
+                      CustomButton(
+                        text: 'Next',
+                        onPressed: _handleNext,
+                      ),
+                      const SizedBox(height: 20),
+                      _buildLoginPrompt(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -98,6 +142,13 @@ class StepOne extends StatelessWidget {
               child: _buildInputField(
                 label: 'First Name',
                 hintText: 'Enter your first name',
+                controller: _firstNameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'First Name is required';
+                  }
+                  return null;
+                },
               ),
             ),
             const SizedBox(width: 10),
@@ -105,37 +156,86 @@ class StepOne extends StatelessWidget {
               child: _buildInputField(
                 label: 'Last Name',
                 hintText: 'Enter your last name',
+                controller: _lastNameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Last Name is required';
+                  }
+                  return null;
+                },
               ),
             ),
           ],
         ),
         const SizedBox(height: 10),
         _buildInputField(
-            label: 'Email Address', hintText: 'Enter your email address'),
+          label: 'Email Address',
+          hintText: 'Enter your email address',
+          controller: _emailController,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Email is required';
+            }
+            if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+              return 'Please enter a valid Email address';
+            }
+            return null;
+          },
+        ),
         const SizedBox(height: 10),
         _buildInputField(
-            label: 'Phone Number', hintText: 'Enter your phone number'),
+          label: 'Phone Number',
+          hintText: 'Enter your phone number',
+          controller: _phoneNumberController,
+          keyboardType: TextInputType.phone,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Phone Number is required';
+            }
+
+            //more conditionals
+            if (value.length < 10) {
+              return 'Enter a valid phone number';
+            }
+            return null;
+          },
+        ),
         const SizedBox(height: 10),
-        _buildInputField(label: 'Username', hintText: '@starboytins'),
+        _buildInputField(
+          label: 'Username',
+          hintText: '@starboytins',
+          controller: _usernameController,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Username is required';
+            }
+            return null;
+          },
+        ),
       ],
     );
   }
 
-  Widget _buildInputField({required String label, required String hintText}) {
+  Widget _buildInputField({
+    required String label,
+    required String hintText,
+    TextEditingController? controller,
+    TextInputType? keyboardType,
+    String? Function(String?)? validator,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: kFormLabelText),
         const SizedBox(height: 10),
         CustomInputField(
+          keyboardType: keyboardType,
+          controller: controller,
+          validator: validator,
           hintText: hintText,
         ),
       ],
     );
-  }
-
-  Widget _buildNextButton() {
-    return CustomButton(text: 'Next');
   }
 
   Widget _buildLoginPrompt() {

@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const CustomSplashScreen(),
-      home: const OnboardingFlow(),
+      home: const OnboardingScreen(),
       // home: const HomeScreen(),
     );
   }
