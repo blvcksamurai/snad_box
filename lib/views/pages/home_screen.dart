@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildCategoriesSection() {
     return const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.only(right: 10, left: 20, top: 20),
         child: Wrap(
           spacing: 10.0, // Space between each item
           runSpacing: 10.0, // Space between the rows
@@ -195,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
               categoryName: '😋 Food Stuffs',
             ),
             CategoriesButtonWidget(
-              categoryName: '📱 Devices',
+              categoryName: '📱Devices',
             ),
             CategoriesButtonWidget(
               categoryName: '💡 Electronics',

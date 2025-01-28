@@ -24,7 +24,9 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         backgroundColor: kBgcolor,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Icons.arrow_back,
             size: 20,

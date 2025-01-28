@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:snad_box/utils/constants.dart';
+import 'package:snad_box/views/pages/profile/favourites_screen.dart';
+import 'package:snad_box/views/pages/profile/order_history.dart';
+import 'package:snad_box/views/transactionHistory/transaction_history.dart';
 import 'package:snad_box/widgets/custom_btn.dart';
 import 'package:snad_box/widgets/hero_card_tile.dart';
 
@@ -18,16 +21,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     bool isStoreOwner = true;
     return Scaffold(
       backgroundColor: kBgcolor,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'Profile',
+          style: kPageHeader,
+        ),
+      ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Profile',
-              style: kPageHeader,
-            ),
-            const SizedBox(height: 20),
             Flexible(
                 child: SingleChildScrollView(
               child: Column(
@@ -88,17 +93,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   SettingOption(
                     icon: Iconsax.money_2,
                     title: 'Transaction History',
-                    route: () {},
+                    route: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const TransactionHistoryScreen()));
+                    },
                   ),
                   SettingOption(
                     icon: Iconsax.truck,
                     title: 'Order History',
-                    route: () {},
+                    route: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const OrderHistoryScreen()));
+                    },
                   ),
                   SettingOption(
                     icon: Iconsax.heart,
                     title: 'My Favourites',
-                    route: () {},
+                    route: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FavouritesScreen()));
+                    },
                   ),
                   SettingOption(
                     icon: Iconsax.notification_bing,

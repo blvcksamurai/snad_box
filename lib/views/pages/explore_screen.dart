@@ -67,7 +67,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text(
-                              'Select a State',
+                              'Select Location',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),

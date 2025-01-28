@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:snad_box/routes/custom_bottom_nav_bar.dart';
 
 import 'package:snad_box/utils/constants.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
             backgroundColor: kBgcolor,
           )),
-      home: const CustomSplashScreen(),
+      home: const CustomBottomNavBar(),
       // home: const OnboardingScreen(),
       // home: const StepThree(),
     );
