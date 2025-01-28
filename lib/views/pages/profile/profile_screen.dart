@@ -4,6 +4,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:snad_box/utils/constants.dart';
 import 'package:snad_box/views/pages/profile/favourites_screen.dart';
 import 'package:snad_box/views/pages/profile/order_history.dart';
+import 'package:snad_box/views/pages/profile/your_profile.dart';
 import 'package:snad_box/views/transactionHistory/transaction_history.dart';
 import 'package:snad_box/widgets/custom_btn.dart';
 import 'package:snad_box/widgets/hero_card_tile.dart';
@@ -101,7 +102,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   SettingOption(
                     icon: Iconsax.profile_circle,
                     title: 'Your Profile',
-                    route: () {},
+                    route: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const YourProfileScreen()));
+                    },
                   ),
                   SettingOption(
                     icon: Iconsax.money_2,

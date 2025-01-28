@@ -104,6 +104,14 @@ const kFormLabelText = TextStyle(
   height: 1.43,
 );
 
+const kUsername = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 14,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.bold,
+  height: 1.43,
+);
+
 const kHintText = TextStyle(
   color: Color(0xFF7D7D7D),
   fontSize: 14,
