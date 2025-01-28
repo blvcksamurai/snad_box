@@ -316,43 +316,65 @@ Widget _buildStoresSection() {
           onPressed: () {},
         ),
         const SizedBox(height: 15),
-        FutureBuilder(
-          future: apiService.fetchData('store/brand'),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const SizedBox(
-                height: 180,
-                child: Center(
-                    child: CircularProgressIndicator(color: kButtonColor)),
-              );
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else if (snapshot.hasData) {
-              final data = snapshot.data as Map<String, dynamic>;
-              final brandStores = data['data']['brandStores'] as List<dynamic>;
 
-              return SizedBox(
-                height: 180,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: brandStores.length,
-                  itemBuilder: (context, index) {
-                    final store = brandStores[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 15.0),
-                      child: StoresCardItem(
-                        name: store['title'],
-                        rating: store['rating'],
-                      ),
-                    );
-                  },
+        //Future BUilder Works (unfreeze when it time for testing)
+        // FutureBuilder(
+        //   future: apiService.fetchData('store/brand'),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.connectionState == ConnectionState.waiting) {
+        //       return const SizedBox(
+        //         height: 180,
+        //         child: Center(
+        //             child: CircularProgressIndicator(color: kButtonColor)),
+        //       );
+        //     } else if (snapshot.hasError) {
+        //       return Center(child: Text('Error: ${snapshot.error}'));
+        //     } else if (snapshot.hasData) {
+        //       final data = snapshot.data as Map<String, dynamic>;
+        //       final brandStores = data['data']['brandStores'] as List<dynamic>;
+
+        //       return SizedBox(
+        //         height: 180,
+        //         child: ListView.builder(
+        //           scrollDirection: Axis.horizontal,
+        //           itemCount: brandStores.length,
+        //           itemBuilder: (context, index) {
+        //             final store = brandStores[index];
+        //             return Padding(
+        //               padding: const EdgeInsets.only(right: 15.0),
+        //               child: StoresCardItem(
+        //                 name: store['title'],
+        //                 rating: store['rating'],
+        //               ),
+        //             );
+        //           },
+        //         ),
+        //       );
+        //     } else {
+        //       return const Center(child: Text('No data available'));
+        //     }
+        //   },
+        // ),
+
+        SizedBox(
+          height: 180,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return const Padding(
+                padding: EdgeInsets.only(right: 15.0),
+                child: StoresCardItem(
+                  // name: store['title'],
+                  // rating: store['rating'],
+
+                  name: 'Store Name',
+                  rating: 4,
                 ),
               );
-            } else {
-              return const Center(child: Text('No data available'));
-            }
-          },
-        ),
+            },
+          ),
+        )
       ],
     ),
   );

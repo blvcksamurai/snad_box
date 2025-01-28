@@ -46,6 +46,7 @@ class StoresCardItem extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             name,
+            overflow: TextOverflow.ellipsis,
             style: kItemTextStyle,
           )
         ],
