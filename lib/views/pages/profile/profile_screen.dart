@@ -45,9 +45,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'N 400,130.00',
-                        style: kHeaderText,
+                      const Text.rich(
+                        TextSpan(children: [
+                          TextSpan(
+                              text: '₦ ',
+                              style: TextStyle(
+                                color: kHeaderTextColor,
+                                fontSize: 28,
+                                fontFamily: 'Nai',
+                                fontWeight: FontWeight.bold,
+                                height: 1.29,
+                              )),
+                          TextSpan(
+                            text: '400,130.00',
+                            style: kHeaderText,
+                          )
+                        ]),
                       ),
                       IconButton(
                           onPressed: () {},
