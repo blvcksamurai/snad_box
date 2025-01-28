@@ -112,6 +112,14 @@ const kUsername = TextStyle(
   height: 1.43,
 );
 
+const kEditButtonText = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 14,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.bold,
+  height: 1.43,
+);
+
 const kHintText = TextStyle(
   color: Color(0xFF7D7D7D),
   fontSize: 14,
@@ -258,6 +266,13 @@ const kTranTimeline = TextStyle(
   fontFamily: 'Gsa',
   fontWeight: FontWeight.w500,
   height: 1.40,
+);
+
+const kProfileDetails = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+  height: 1.33,
 );
 // const kTextFieldInput = InputDecoration(
 //     filled: true,
