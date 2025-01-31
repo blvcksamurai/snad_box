@@ -87,6 +87,13 @@ const kSubHeaderText2 = TextStyle(
   fontWeight: FontWeight.bold,
   height: 1.3,
 );
+const kOtpsubheaderText2 = TextStyle(
+  color: Colors.grey,
+  fontFamily: 'Gsa',
+  fontSize: 17,
+  fontWeight: FontWeight.bold,
+  height: 1.3,
+);
 
 const kSmallBtnText = TextStyle(
   color: Colors.white,
@@ -129,6 +136,19 @@ const kHintText = TextStyle(
 
 const kItemListTextStyle = TextStyle(
   color: Color(0xFF7D7D7D),
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+  height: 1.33,
+);
+
+const kModalHeader = TextStyle(
+  color: Color(0xFF0A0A0A),
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+  height: 1.45,
+);
+const kModalContent = TextStyle(
+  color: Color(0xFF4F4F4F),
   fontSize: 18,
   fontWeight: FontWeight.w500,
   height: 1.33,

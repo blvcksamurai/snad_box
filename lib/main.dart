@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:snad_box/routes/custom_bottom_nav_bar.dart';
+import 'package:snad_box/teabag/burner_otp.dart';
 
 import 'package:snad_box/utils/constants.dart';
+import 'package:snad_box/views/otp/otp_screen.dart';
+import 'package:snad_box/views/pages/cart/tests.dart';
 
 import 'views/splash_screen.dart';
 
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
             backgroundColor: kBgcolor,
           )),
-      home: const CustomBottomNavBar(),
+      home: const OtpScreen(),
       // home: const OnboardingScreen(),
       // home: const StepThree(),
     );

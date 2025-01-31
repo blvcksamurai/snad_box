@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:pinput/pinput.dart';
 import 'package:snad_box/utils/constants.dart';
+import 'package:snad_box/widgets/custom_drag_handle.dart';
 
 import '../../widgets/custom_btn.dart';
 import '../../widgets/input_widgets/custom_otp_input.dart';
@@ -13,6 +18,105 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  final TextEditingController _otpController = TextEditingController();
+  Timer? _timer;
+  int _start = 30; // Cooldown duration (in seconds)
+  bool _canResend = false; // Disable "Resend" button initially
+  String? _errorMessage; // To store error messages
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    setState(() => _canResend = false);
+    _start = 30; // Reset timer
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_start == 0) {
+        setState(() {
+          _canResend = true; // Enable "Resend OTP" button
+          _timer?.cancel();
+        });
+      } else {
+        setState(() => _start--);
+      }
+    });
+  }
+
+  void _resendOtp() {
+    print("OTP Resent!");
+    _startTimer(); // Restart cooldown
+  }
+
+  void _submitOtp(String otp) {
+    const String correctOtp = '000000'; // Default acceptable OTP
+
+    if (otp == correctOtp) {
+      // Valid OTP: Show success modal
+      //TODO: Add Confetti to the modal
+      showModalBottomSheet(
+        context: context,
+        builder: (context) => SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            height: 350,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(24)),
+              color: kBgcolor,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const CustomDragHandle(),
+                const SizedBox(height: 20),
+                Container(
+                  height: 80,
+                  width: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(16)),
+                    border: Border.all(width: 2, color: kButtonColor),
+                    color: kIconButtonColor2,
+                  ),
+                  alignment: Alignment.center,
+                  child: const Text(
+                    '🥳',
+                    style: TextStyle(fontSize: 40),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Account Activated',
+                  style: kModalHeader,
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'We have confirmed your email address and activated your account. Welcome to Showcase!',
+                  softWrap: true,
+                  textAlign: TextAlign.center,
+                  style: kModalContent,
+                ),
+                const SizedBox(height: 20),
+                CustomButton(
+                  text: 'Continue to App',
+                  onPressed: () => Navigator.pop(context), // Close the modal
+                )
+              ],
+            ),
+          ),
+        ),
+      );
+    } else {
+      // Invalid OTP: Show error message below OTP field
+      setState(() {
+        _errorMessage = "OTP is incorrect. Please request a new one.";
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,58 +142,76 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
                 const SizedBox(height: 15),
                 const SizedBox(
-                    width: 332,
+                    width: double.infinity,
                     child: Text(
                       'We sent you a 6 digit OTP to your email. Enter it to confirm your email address',
                       style: kSubHeaderText,
                     )),
                 const SizedBox(height: 20),
-                const SizedBox(
-                  width: 382,
+
+                /// OTP Input Field
+                Center(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 10),
-                      //I tried using a list view builder here
-                      // SizedBox(
-                      //   height: 70, // Height of the items
-                      //   child: ListView.builder(
-                      //     scrollDirection: Axis
-                      //         .horizontal, // Set the scroll direction to horizontal
-                      //     itemCount: 6,
-                      //     itemBuilder: (context, index) {
-                      //       return Padding(
-                      //         padding: const EdgeInsets.symmetric(
-                      //             horizontal: 8.0), // Add spacing between items
-                      //         child: SizedBox(
-                      //           height: 70,
-                      //           width: 57,
-                      //           child: CustomInputField(hintText: '0'),
-                      //         ),
-                      //       );
-                      //     },
-                      //   ),
-                      // )
-                      Form(
+                      Pinput(
+                        keyboardType: TextInputType.number,
+                        length: 6,
+                        controller: _otpController,
+                        defaultPinTheme: PinTheme(
+                          width: 57,
+                          height: 70,
+                          textStyle: kOTPActive,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: kGrey, width: 1.5),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        focusedPinTheme: PinTheme(
+                          width: 57,
+                          height: 70,
+                          textStyle: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: kButtonColor, width: 2),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onCompleted: _submitOtp,
+                      ),
+                      if (_errorMessage != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
                           child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          //Add OTP service package
-                          CustomOTPInput(),
-                          CustomOTPInput(),
-                          CustomOTPInput(),
-                          CustomOTPInput(),
-                          CustomOTPInput(),
-                          CustomOTPInput(),
-                        ],
-                      )),
+                            children: [
+                              const Icon(
+                                Iconsax.info_circle,
+                                color: Colors.red,
+                                size: 16,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  _errorMessage!,
+                                  style: const TextStyle(
+                                    color: Color(0xFFFB4337),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.50,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 30),
                 CustomButton(
                   text: 'Confirm Email Address',
-                  onPressed: () {},
+                  onPressed: () => _submitOtp(_otpController.text),
                 ),
                 const SizedBox(height: 15),
                 Center(
@@ -99,17 +221,30 @@ class _OtpScreenState extends State<OtpScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Didn't get a code? ",
+                        Text(
+                          _canResend ? "Didn't get a code? " : "Code sent. ",
                           style: kSubHeaderText,
                         ),
+                        Text(
+                          _canResend ? "" : "Request New Code in ",
+                          style: kOtpsubheaderText2,
+                        ),
                         InkWell(
-                          onTap: () {},
-                          child: const Text(
-                            "Request Code",
-                            style: kSubHeaderText2,
-                          ),
-                        )
+                          onTap: _canResend
+                              ? _resendOtp
+                              : null, // Disable if cooldown is active
+                          child:
+                              Text(_canResend ? "Request code" : " 00:$_start",
+                                  style: TextStyle(
+                                    color: _canResend
+                                        ? Colors.black
+                                        : Colors.black, // Grey when disabled
+                                    fontFamily: 'Gsa',
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    height: 1.3,
+                                  )),
+                        ),
                       ],
                     ),
                   ),
@@ -124,7 +259,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   child: Center(
                       child: SvgPicture.asset(
                     'assets/images/planes.svg',
-                    fit: BoxFit.fitHeight,
+                    fit: BoxFit.contain,
                   )),
                 ),
                 const SizedBox(height: 20),
