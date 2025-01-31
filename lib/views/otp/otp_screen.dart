@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
@@ -8,7 +9,6 @@ import 'package:snad_box/utils/constants.dart';
 import 'package:snad_box/widgets/custom_drag_handle.dart';
 
 import '../../widgets/custom_btn.dart';
-import '../../widgets/input_widgets/custom_otp_input.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
@@ -19,6 +19,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   final TextEditingController _otpController = TextEditingController();
+  late ConfettiController _confettiController;
   Timer? _timer;
   int _start = 30; // Cooldown duration (in seconds)
   bool _canResend = false; // Disable "Resend" button initially
@@ -27,7 +28,16 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   void initState() {
     super.initState();
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 3));
     _startTimer();
+  }
+
+  @override
+  void dispose() {
+    _confettiController.dispose();
+    _timer?.cancel();
+    super.dispose();
   }
 
   void _startTimer() {
@@ -57,58 +67,13 @@ class _OtpScreenState extends State<OtpScreen> {
     if (otp == correctOtp) {
       // Valid OTP: Show success modal
       //TODO: Add Confetti to the modal
+      _confettiController.play(); // Start confetti when modal pops
       showModalBottomSheet(
-        context: context,
-        builder: (context) => SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-            height: 350,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(24)),
-              color: kBgcolor,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const CustomDragHandle(),
-                const SizedBox(height: 20),
-                Container(
-                  height: 80,
-                  width: 80,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
-                    border: Border.all(width: 2, color: kButtonColor),
-                    color: kIconButtonColor2,
-                  ),
-                  alignment: Alignment.center,
-                  child: const Text(
-                    '🥳',
-                    style: TextStyle(fontSize: 40),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Account Activated',
-                  style: kModalHeader,
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'We have confirmed your email address and activated your account. Welcome to Showcase!',
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                  style: kModalContent,
-                ),
-                const SizedBox(height: 20),
-                CustomButton(
-                  text: 'Continue to App',
-                  onPressed: () => Navigator.pop(context), // Close the modal
-                )
-              ],
-            ),
-          ),
-        ),
-      );
+          context: context,
+          builder: (context) {
+            return _AnimatedSuccessModal(
+                confettiController: _confettiController);
+          });
     } else {
       // Invalid OTP: Show error message below OTP field
       setState(() {
@@ -267,6 +232,131 @@ class _OtpScreenState extends State<OtpScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _AnimatedSuccessModal extends StatefulWidget {
+  final ConfettiController confettiController;
+
+  const _AnimatedSuccessModal({required this.confettiController});
+
+  @override
+  State<_AnimatedSuccessModal> createState() => _AnimatedSuccessModalState();
+}
+
+class _AnimatedSuccessModalState extends State<_AnimatedSuccessModal>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _opacityAnimation;
+  late Animation<Offset> _slideAnimation;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+
+    _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.2),
+      end: Offset.zero,
+    ).animate(
+        CurvedAnimation(parent: _animationController, curve: Curves.easeOut));
+
+    _scaleAnimation = Tween<double>(begin: 0.5, end: 1).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.elasticOut),
+    );
+
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+      height: 370,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(24)),
+        color: kBgcolor,
+      ),
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: ConfettiWidget(
+              shouldLoop: false,
+              blastDirectionality: BlastDirectionality.explosive,
+              confettiController: widget.confettiController,
+              blastDirection: -3.14 / 2,
+              emissionFrequency: 0.15,
+              numberOfParticles: 70,
+              gravity: 0.6,
+              minimumSize: const Size(10, 10),
+              maximumSize: const Size(12, 12),
+            ),
+          ),
+          FadeTransition(
+            opacity: _opacityAnimation,
+            child: SlideTransition(
+              position: _slideAnimation,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const CustomDragHandle(),
+                  const SizedBox(height: 20),
+                  ScaleTransition(
+                    scale: _scaleAnimation,
+                    child: Container(
+                      height: 80,
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(16)),
+                        border: Border.all(width: 2, color: kButtonColor),
+                        color: kIconButtonColor2,
+                      ),
+                      alignment: Alignment.center,
+                      child: const Text(
+                        '🥳',
+                        style: TextStyle(fontSize: 40),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text('Account Activated', style: kModalHeader),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'We have confirmed your email address and activated your account. Welcome to Showcase!',
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                    style: kModalContent,
+                  ),
+                  const SizedBox(height: 20),
+                  CustomButton(
+                    text: 'Continue to App',
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
