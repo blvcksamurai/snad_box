@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pinput/pinput.dart';
+import 'package:snad_box/routes/custom_bottom_nav_bar.dart';
+import 'package:snad_box/routes/routes.dart';
 import 'package:snad_box/utils/constants.dart';
 import 'package:snad_box/widgets/custom_drag_handle.dart';
 
@@ -296,20 +298,6 @@ class _AnimatedSuccessModalState extends State<_AnimatedSuccessModal>
       ),
       child: Stack(
         children: [
-          Align(
-            alignment: Alignment.topCenter,
-            child: ConfettiWidget(
-              shouldLoop: false,
-              blastDirectionality: BlastDirectionality.explosive,
-              confettiController: widget.confettiController,
-              blastDirection: -3.14 / 2,
-              emissionFrequency: 0.15,
-              numberOfParticles: 70,
-              gravity: 0.6,
-              minimumSize: const Size(10, 10),
-              maximumSize: const Size(12, 12),
-            ),
-          ),
           FadeTransition(
             opacity: _opacityAnimation,
             child: SlideTransition(
@@ -348,12 +336,28 @@ class _AnimatedSuccessModalState extends State<_AnimatedSuccessModal>
                   ),
                   const SizedBox(height: 20),
                   CustomButton(
-                    text: 'Continue to App',
-                    onPressed: () => Navigator.pop(context),
-                  ),
+                      text: 'Continue to App',
+                      onPressed: () => Navigator.pushReplacementNamed(
+                          context, AppRoutes.landingView)),
                   const SizedBox(height: 10),
                 ],
               ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: ConfettiWidget(
+              shouldLoop: false,
+              blastDirectionality: BlastDirectionality.explosive,
+              confettiController: widget.confettiController,
+              blastDirection: 180,
+              emissionFrequency: 0.035,
+              numberOfParticles: 60,
+              gravity: 0.2,
+              maxBlastForce: 70,
+              minBlastForce: 50,
+              minimumSize: const Size(10, 10),
+              maximumSize: const Size(12, 12),
             ),
           ),
         ],

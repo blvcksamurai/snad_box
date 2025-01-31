@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:snad_box/routes/routes.dart';
 import 'package:snad_box/views/createAccount/step1.dart';
 
 import '../../utils/constants.dart';
@@ -46,12 +47,7 @@ class OnboardingScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   CustomButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const StepOne(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, AppRoutes.stepOne);
                     },
                     text: 'Get Started',
                     icon: Icons.arrow_forward,

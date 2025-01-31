@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
+import 'package:snad_box/routes/routes.dart';
 import 'package:snad_box/views/createAccount/step3.dart';
 
 import '../../utils/constants.dart';
@@ -30,12 +31,7 @@ class _StepTwoState extends State<StepTwo> {
   void _validateAndProceed() {
     if (_formKey.currentState?.validate() ?? false) {
       //Step Three Navi
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const StepThree(),
-        ),
-      );
+      Navigator.pushNamed(context, AppRoutes.stepThree);
     } else {
       print('Form is invalid. Check the fields.');
     }

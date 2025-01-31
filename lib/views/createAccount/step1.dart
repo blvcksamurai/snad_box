@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:snad_box/views/createAccount/step2.dart';
+import 'package:snad_box/routes/routes.dart';
 
 import '../../utils/constants.dart';
 import '../../widgets/custom_btn.dart';
@@ -37,12 +37,7 @@ class _StepOneState extends State<StepOne> {
   void _handleNext() {
     if (_formKey.currentState?.validate() ?? false) {
       // Navigate to the next page
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const StepTwo(),
-        ),
-      );
+      Navigator.pushNamed(context, AppRoutes.stepTwo);
     }
   }
 
