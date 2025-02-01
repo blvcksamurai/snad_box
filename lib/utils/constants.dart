@@ -196,6 +196,14 @@ const kPriceTextStyle = TextStyle(
   height: 1.44,
 );
 
+const kRatingTextStyle = TextStyle(
+  color: Color(0xFF353535),
+  fontSize: 12,
+  fontFamily: 'Gsa',
+  fontWeight: FontWeight.w500,
+  height: 1.44,
+);
+
 const kProductName = TextStyle(
   color: kHeaderTextColor,
   fontSize: 24,

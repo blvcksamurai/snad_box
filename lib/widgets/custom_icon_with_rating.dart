@@ -23,11 +23,12 @@ class CustomIconRating extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         height: 26,
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         constraints: const BoxConstraints(
-          minWidth: 0,
-          maxWidth: 60,
+          minWidth: 1,
+          maxWidth: 50,
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+        alignment: Alignment.center,
         decoration: BoxDecoration(
             color: bgColor, borderRadius: BorderRadius.circular(10)),
         child: Row(
@@ -39,7 +40,7 @@ class CustomIconRating extends StatelessWidget {
             const SizedBox(width: 5),
             Text(
               rating.toString(),
-              style: kPriceTextStyle,
+              style: kRatingTextStyle,
             )
           ],
         ),
