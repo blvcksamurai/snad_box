@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:snad_box/routes/custom_bottom_nav_bar.dart';
 import 'package:snad_box/routes/routes.dart';
+
 import 'package:snad_box/utils/constants.dart';
-import 'package:snad_box/views/onboarding/onboarding_screen.dart';
 import 'package:snad_box/widgets/input_widgets/custom_password_field.dart';
 import 'package:snad_box/widgets/custom_btn.dart';
 

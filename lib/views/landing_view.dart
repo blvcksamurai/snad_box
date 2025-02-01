@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:snad_box/views/pages/cart/cart_screen.dart';
-import 'package:snad_box/views/pages/explore_screen.dart';
-import 'package:snad_box/views/pages/home_screen.dart';
+import 'package:snad_box/views/pages/explore/explore_screen.dart';
+import 'package:snad_box/views/pages/home/home_screen.dart';
 import 'package:snad_box/views/pages/profile/profile_screen.dart';
+import 'package:snad_box/views/pages/stores/stores_screen.dart';
 
-import '../../utils/constants.dart';
+import '../utils/constants.dart';
 
 class CustomLandingView extends StatefulWidget {
   const CustomLandingView({super.key});
@@ -22,7 +23,7 @@ class _CustomLandingViewState extends State<CustomLandingView> {
     const HomeScreen(),
     const ExploreScreen(),
     const CartScreen(),
-    const Text('Stores'),
+    const StoresScreen(),
     const ProfileScreen(),
   ];
 

@@ -8,8 +8,8 @@ import 'package:snad_box/widgets/hero_card_tile.dart';
 import 'package:snad_box/widgets/input_widgets/custom_input_field.dart';
 import 'package:snad_box/widgets/large_text_with_icon.dart';
 
-import '../../widgets/for_you_items.dart';
-import '../../widgets/stores_card_item.dart';
+import '../../../widgets/for_you_items.dart';
+import '../../../widgets/stores_card_item.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});

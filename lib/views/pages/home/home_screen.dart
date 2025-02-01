@@ -3,11 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:snad_box/services/api_service.dart';
 import 'package:snad_box/utils/constants.dart';
-import '../../widgets/custom_icon_button.dart';
-import '../../widgets/for_you_items.dart';
-import '../../widgets/hero_card_tile.dart';
-import '../../widgets/large_text_with_icon.dart';
-import '../../widgets/stores_card_item.dart';
+import '../../../widgets/custom_icon_button.dart';
+import '../../../widgets/for_you_items.dart';
+import '../../../widgets/hero_card_tile.dart';
+import '../../../widgets/large_text_with_icon.dart';
+import '../../../widgets/stores_card_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
