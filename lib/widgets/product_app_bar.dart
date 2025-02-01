@@ -57,7 +57,7 @@ class ProductNaviIcon extends StatelessWidget {
           ),
           icon: Icon(
             icon,
-            size: 20,
+            size: 16,
           )),
     );
   }

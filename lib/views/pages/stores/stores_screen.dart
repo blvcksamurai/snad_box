@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:snad_box/services/api_service.dart';
 import 'package:snad_box/utils/constants.dart';
+import 'package:snad_box/views/pages/stores/store_details_screen.dart';
 import 'package:snad_box/widgets/hero_card_tile.dart';
 
 import '../../../widgets/large_text_with_icon.dart';
@@ -62,7 +63,16 @@ class _StoresScreenState extends State<StoresScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildStoresSection(),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const StoreDetailsScreen(),
+                        ),
+                      );
+                    },
+                    child: _buildStoresSection()),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: HeroCardTile(),
@@ -87,7 +97,7 @@ class CreateStoreBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 30,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
       constraints: const BoxConstraints(
         minWidth: 1,
         maxWidth: double.infinity,
@@ -117,6 +127,7 @@ Widget _buildStoresSection() {
           headerTitle: 'Popular Stores in Your Area',
           onPressed: () {},
         ),
+
         const SizedBox(height: 15),
 
         SizedBox(
