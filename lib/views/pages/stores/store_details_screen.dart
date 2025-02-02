@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:snad_box/utils/constants.dart';
 import 'package:snad_box/widgets/custom_icon_button.dart';
+import 'package:snad_box/widgets/hero_card_tile.dart';
+import 'package:snad_box/widgets/order_screen_widgets/animated_icon_heart.dart';
 import 'package:snad_box/widgets/product_app_bar.dart';
+
+import '../../../widgets/large_text_with_icon.dart';
+import '../../../widgets/stores_card_item.dart';
 
 class StoreDetailsScreen extends StatefulWidget {
   const StoreDetailsScreen({super.key});
@@ -15,106 +20,303 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            backgroundColor: kBgcolor,
-            expandedHeight: 260.0,
-            pinned: true,
-            stretch: true,
-            flexibleSpace: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                // Calculating the collapse percentage
-                double collapsePercentage =
-                    (constraints.maxHeight - kToolbarHeight) /
-                        (260.0 - kToolbarHeight);
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: kBgcolor,
+              expandedHeight: 260.0,
+              pinned: true,
+              stretch: true,
+              flexibleSpace: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  // Calculating the collapse percentage
+                  double collapsePercentage =
+                      (constraints.maxHeight - kToolbarHeight) /
+                          (260.0 - kToolbarHeight);
 
-                // Interpolating left padding and bottom padding based on collapse percentage
-                double leftPadding = (20 + (80 - 20) * (1 - collapsePercentage))
-                    .clamp(0, double.infinity);
-                double bottomPadding = (10 + (0 - 0) * (1 - collapsePercentage))
-                    .clamp(0, double.infinity);
-                return FlexibleSpaceBar(
-                  collapseMode: CollapseMode.pin,
-                  background: Stack(
+                  // Interpolating left padding and bottom padding based on collapse percentage
+                  double leftPadding =
+                      (20 + (80 - 20) * (1 - collapsePercentage))
+                          .clamp(0, double.infinity);
+                  double bottomPadding =
+                      (10 + (0 - 0) * (1 - collapsePercentage))
+                          .clamp(0, double.infinity);
+                  return FlexibleSpaceBar(
+                    collapseMode: CollapseMode.pin,
+                    background: Stack(
+                      children: [
+                        // Cover Photo
+                        SizedBox(
+                          height: 150,
+                          width: double.infinity,
+                          child: Image.asset(
+                            'assets/images/nike_cover.png',
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        // Profile Picture
+                        Positioned(
+                          top: 110.0,
+                          left: 20.0,
+                          child: Container(
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 2, color: kIconButtonColor),
+                                image: const DecorationImage(
+                                    image:
+                                        AssetImage('assets/images/nike.png')),
+                                borderRadius: BorderRadius.circular(16)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    title: const Text(
+                      "Nike Fashion Store",
+                      style: kSubHeaderText2,
+                    ),
+                    titlePadding: EdgeInsets.only(
+                        left: leftPadding, bottom: bottomPadding),
+                  );
+                },
+              ),
+              leading: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: ProductNaviIcon(
+                    icon: Icons.arrow_back,
+                    onTap: () {
+                      Navigator.pop(context);
+                    }),
+              ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: ProductNaviIcon(icon: Iconsax.send_2, onTap: () {}),
+                ),
+              ],
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Cover Photo
-                      SizedBox(
-                        height: 150,
-                        width: double.infinity,
-                        child: Image.asset(
-                          'assets/images/nike_cover.png',
-                          fit: BoxFit.fill,
-                        ),
+                      const Row(
+                        children: [
+                          StoreTagItem(
+                            label: '4.3',
+                            icon: Iconsax.star,
+                          ),
+                          StoreTagItem(
+                            label: 'Lagos',
+                            icon: Iconsax.location,
+                          ),
+                          StoreTagItem(
+                            label: 'Fashion',
+                            icon: Iconsax.cloud,
+                          )
+                        ],
                       ),
-                      // Profile Picture
-                      Positioned(
-                        top: 110.0,
-                        left: 20.0,
-                        child: Container(
-                          height: 80,
-                          width: 80,
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 2, color: kIconButtonColor),
-                              image: const DecorationImage(
-                                  image: AssetImage('assets/images/nike.png')),
-                              borderRadius: BorderRadius.circular(16)),
+                      const SizedBox(height: 24),
+                      const Text(
+                        'STORE DESCRIPTION',
+                        style: kProductDescHeader,
+                      ),
+                      const Text(
+                        'Are you passionate about technology, innovation, and sharing your insights? The DevFest Lagos Call for Papers (CFP) form is your opportunity to contribute to DevFest Lagos 2024.',
+                        style: kProductDesc,
+                      ),
+                      const SizedBox(height: 24),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Items on sale',
+                            style: kProductDescHeader,
+                          ),
+                          Container(
+                            height: 32,
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            constraints: const BoxConstraints(
+                              minWidth: 1,
+                            ),
+                            decoration: ShapeDecoration(
+                              // color: Color(0xFFFFF7EA),
+                              shape: RoundedRectangleBorder(
+                                side: const BorderSide(
+                                    width: 1, color: Color(0xFFA3A3A3)),
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                            ),
+                            child: const Row(
+                              children: [
+                                Icon(
+                                  Iconsax.filter,
+                                  size: 16,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  'Filter',
+                                  style: kProductDesc,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 16.0,
+                          crossAxisSpacing: 16.0,
+                          childAspectRatio: 0.5,
+                          mainAxisExtent: 275,
                         ),
+                        shrinkWrap: true, // Allow GridView to wrap content
+                        physics:
+                            const NeverScrollableScrollPhysics(), // Disable scrolling
+                        itemBuilder: (context, index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                  height: 218,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/p_mockup2.png'),
+                                        fit: BoxFit.cover),
+                                  ),
+                                  padding: const EdgeInsets.all(10),
+                                  alignment: Alignment.topLeft,
+                                  child: const AnimatedCustomIconButton(
+                                    filledIcon: Iconsax.heart5,
+                                    outlineIcon: Iconsax.heart,
+                                    iconSize: 20,
+                                    filledColor: Colors.red,
+                                    outlineColor: Colors.black,
+                                    bgColor: Colors.white,
+                                  )),
+                              const Text(
+                                'Mockup Water Bottles',
+                                style: kItemTextStyle,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const Text.rich(TextSpan(children: [
+                                TextSpan(
+                                    text: '₦ ',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'General',
+                                      color: Color(0xFF353535),
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                                TextSpan(text: '4130', style: kPriceTextStyle)
+                              ])),
+                            ],
+                          );
+                        },
+                        itemCount: 8,
                       ),
                     ],
                   ),
-                  title: const Text(
-                    "Nike Fashion Store",
-                    style: kSubHeaderText2,
-                  ),
-                  titlePadding:
-                      EdgeInsets.only(left: leftPadding, bottom: bottomPadding),
-                );
-              },
-            ),
-            leading: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: ProductNaviIcon(icon: Icons.arrow_back, onTap: () {}),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ProductNaviIcon(icon: Iconsax.send_2, onTap: () {}),
-              ),
-            ],
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        StoreTagItem(
-                          label: '4.3',
-                          icon: Iconsax.star,
-                        ),
-                        StoreTagItem(
-                          label: 'Lagos',
-                          icon: Iconsax.location,
-                        ),
-                        StoreTagItem(
-                          label: 'Fashion',
-                          icon: Iconsax.cloud,
-                        )
-                      ],
-                    ),
-                  ],
                 ),
-              )
-            ]),
-          ),
-        ],
+                const SizedBox(height: 16),
+                _buildSimilarStoresSection(),
+              ]),
+            ),
+          ],
+        ),
       ),
     );
   }
+}
+
+Widget _buildSimilarStoresSection() {
+  // ApiService apiService = ApiService();
+
+  return Padding(
+    padding: const EdgeInsets.only(left: 20),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        LargeTextWithIcon(
+          headerTitle: 'Popular Stores in Your Area',
+          onPressed: () {},
+        ),
+
+        const SizedBox(height: 15),
+
+        SizedBox(
+          height: 180,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return const Padding(
+                padding: EdgeInsets.only(right: 15.0),
+                child: StoresCardItem(
+                  // name: store['title'],
+                  // rating: store['rating'],
+
+                  name: 'Store Name',
+                  rating: 4,
+                ),
+              );
+            },
+          ),
+        ),
+        //Future BUilder Works (unfreeze when it time for testing)
+        // FutureBuilder(
+        //   future: apiService.fetchData('store/brand'),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.connectionState == ConnectionState.waiting) {
+        //       return const SizedBox(
+        //         height: 180,
+        //         child: Center(
+        //             child: CircularProgressIndicator(color: kButtonColor)),
+        //       );
+        //     } else if (snapshot.hasError) {
+        //       return Center(child: Text('Error: ${snapshot.error}'));
+        //     } else if (snapshot.hasData) {
+        //       final data = snapshot.data as Map<String, dynamic>;
+        //       final brandStores = data['data']['brandStores'] as List<dynamic>;
+
+        //       return SizedBox(
+        //         height: 180,
+        //         child: ListView.builder(
+        //           scrollDirection: Axis.horizontal,
+        //           itemCount: brandStores.length,
+        //           itemBuilder: (context, index) {
+        //             final store = brandStores[index];
+        //             return Padding(
+        //               padding: const EdgeInsets.only(right: 15.0),
+        //               child: StoresCardItem(
+        //                 name: store['title'],
+        //                 rating: store['rating'],
+        //               ),
+        //             );
+        //           },
+        //         ),
+        //       );
+        //     } else {
+        //       return const Center(child: Text('No data available'));
+        //     }
+        //   },
+        // ),
+      ],
+    ),
+  );
 }
 
 class StoreTagItem extends StatelessWidget {

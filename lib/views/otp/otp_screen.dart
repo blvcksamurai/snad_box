@@ -296,71 +296,73 @@ class _AnimatedSuccessModalState extends State<_AnimatedSuccessModal>
         borderRadius: BorderRadius.all(Radius.circular(24)),
         color: kBgcolor,
       ),
-      child: Stack(
-        children: [
-          FadeTransition(
-            opacity: _opacityAnimation,
-            child: SlideTransition(
-              position: _slideAnimation,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const CustomDragHandle(),
-                  const SizedBox(height: 20),
-                  ScaleTransition(
-                    scale: _scaleAnimation,
-                    child: Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(16)),
-                        border: Border.all(width: 2, color: kButtonColor),
-                        color: kIconButtonColor2,
-                      ),
-                      alignment: Alignment.center,
-                      child: const Text(
-                        '🥳',
-                        style: TextStyle(fontSize: 40),
+      child: SingleChildScrollView(
+        child: Stack(
+          children: [
+            FadeTransition(
+              opacity: _opacityAnimation,
+              child: SlideTransition(
+                position: _slideAnimation,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const CustomDragHandle(),
+                    const SizedBox(height: 20),
+                    ScaleTransition(
+                      scale: _scaleAnimation,
+                      child: Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(16)),
+                          border: Border.all(width: 2, color: kButtonColor),
+                          color: kIconButtonColor2,
+                        ),
+                        alignment: Alignment.center,
+                        child: const Text(
+                          '🥳',
+                          style: TextStyle(fontSize: 40),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text('Account Activated', style: kModalHeader),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'We have confirmed your email address and activated your account. Welcome to Showcase!',
-                    softWrap: true,
-                    textAlign: TextAlign.center,
-                    style: kModalContent,
-                  ),
-                  const SizedBox(height: 20),
-                  CustomButton(
-                      text: 'Continue to App',
-                      onPressed: () => Navigator.pushReplacementNamed(
-                          context, AppRoutes.landingView)),
-                  const SizedBox(height: 10),
-                ],
+                    const SizedBox(height: 10),
+                    const Text('Account Activated', style: kModalHeader),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'We have confirmed your email address and activated your account. Welcome to Showcase!',
+                      softWrap: true,
+                      textAlign: TextAlign.center,
+                      style: kModalContent,
+                    ),
+                    const SizedBox(height: 20),
+                    CustomButton(
+                        text: 'Continue to App',
+                        onPressed: () => Navigator.pushReplacementNamed(
+                            context, AppRoutes.landingView)),
+                    const SizedBox(height: 10),
+                  ],
+                ),
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: ConfettiWidget(
-              shouldLoop: false,
-              blastDirectionality: BlastDirectionality.explosive,
-              confettiController: widget.confettiController,
-              blastDirection: 180,
-              emissionFrequency: 0.035,
-              numberOfParticles: 60,
-              gravity: 0.2,
-              maxBlastForce: 70,
-              minBlastForce: 50,
-              minimumSize: const Size(10, 10),
-              maximumSize: const Size(12, 12),
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConfettiWidget(
+                shouldLoop: false,
+                blastDirectionality: BlastDirectionality.explosive,
+                confettiController: widget.confettiController,
+                blastDirection: 180,
+                emissionFrequency: 0.035,
+                numberOfParticles: 60,
+                gravity: 0.2,
+                maxBlastForce: 70,
+                minBlastForce: 50,
+                minimumSize: const Size(10, 10),
+                maximumSize: const Size(12, 12),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

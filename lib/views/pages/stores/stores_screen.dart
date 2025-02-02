@@ -72,7 +72,7 @@ class _StoresScreenState extends State<StoresScreen> {
                         ),
                       );
                     },
-                    child: _buildStoresSection()),
+                    child: _buildPopularStoresSection()),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: HeroCardTile(),
@@ -115,7 +115,7 @@ class CreateStoreBtn extends StatelessWidget {
   }
 }
 
-Widget _buildStoresSection() {
+Widget _buildPopularStoresSection() {
   ApiService apiService = ApiService();
 
   return Padding(

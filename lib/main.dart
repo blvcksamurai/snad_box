@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:snad_box/routes/routes.dart';
 
 import 'package:snad_box/utils/constants.dart';
-import 'package:snad_box/views/pages/stores/store_details_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,9 +29,9 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
             backgroundColor: kBgcolor,
           )),
-      // initialRoute: AppRoutes.splashScreen,
-      // onGenerateRoute: AppRoutes.generateRoute,
-      home: const StoreDetailsScreen(),
+      initialRoute: AppRoutes.splashScreen,
+      onGenerateRoute: AppRoutes.generateRoute,
+      // home: const StoreDetailsScreen(),
       // home: const OnboardingScreen(),
       // home: const StepThree(),
     );

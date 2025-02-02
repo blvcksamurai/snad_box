@@ -48,21 +48,22 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             ),
           ),
           Flexible(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Maximum of 2 items per row
-                  mainAxisSpacing: 10.0, // Spacing between rows
-                  crossAxisSpacing: 16.0, // Spacing between columns
-                  childAspectRatio: 0.5,
-                  mainAxisExtent: 300),
-              itemBuilder: (context, index) {
-                return _buildFavouritesItemCard();
-              },
-              itemCount: 8, // Replace with the actual number of items
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Maximum of 2 items per row
+                    mainAxisSpacing: 10.0, // Spacing between rows
+                    crossAxisSpacing: 16.0, // Spacing between columns
+                    childAspectRatio: 0.5,
+                    mainAxisExtent: 300),
+                itemBuilder: (context, index) {
+                  return _buildFavouritesItemCard();
+                },
+                itemCount: 8, // Replace with the actual number of items
+              ),
             ),
-          ))
+          )
         ],
       ),
     );
@@ -88,8 +89,9 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               alignment: Alignment.topLeft,
               child: CustomIconButton(
                 icon: Iconsax.heart,
+                iconSize: 20,
                 bgColor: Colors.white,
-                iconColor: Colors.red,
+                iconColor: Colors.black,
                 onPressed: () {},
               )),
           const Text(

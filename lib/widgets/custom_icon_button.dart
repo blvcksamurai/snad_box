@@ -22,9 +22,9 @@ class CustomIconButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 40,
-        width: 40,
-        padding: const EdgeInsets.all(10),
+        height: 36,
+        width: 36,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
             color: bgColor, borderRadius: BorderRadius.circular(10)),
         child: Icon(
