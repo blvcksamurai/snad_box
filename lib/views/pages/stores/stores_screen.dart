@@ -4,6 +4,7 @@ import 'package:snad_box/utils/constants.dart';
 import 'package:snad_box/views/pages/stores/store_details_screen.dart';
 import 'package:snad_box/widgets/hero_card_tile.dart';
 
+import '../../../widgets/custom_filter_btn.dart';
 import '../../../widgets/large_text_with_icon.dart';
 import '../../../widgets/stores_card_item.dart';
 
@@ -39,21 +40,14 @@ class _StoresScreenState extends State<StoresScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  flex: 7,
-                  child: Container(
-                    color: Colors.black,
-                    height: 50,
-                  ),
+                Container(
+                  color: Colors.black,
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * .7,
                 ),
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    height: 50,
-                    color: Colors.amber,
-                  ),
-                )
+                const CustomFliterBtn()
               ],
             ),
           ),

@@ -6,6 +6,7 @@ import 'package:snad_box/widgets/hero_card_tile.dart';
 import 'package:snad_box/widgets/order_screen_widgets/animated_icon_heart.dart';
 import 'package:snad_box/widgets/product_app_bar.dart';
 
+import '../../../widgets/custom_filter_btn.dart';
 import '../../../widgets/large_text_with_icon.dart';
 import '../../../widgets/stores_card_item.dart';
 
@@ -131,43 +132,14 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
                         style: kProductDesc,
                       ),
                       const SizedBox(height: 24),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             'Items on sale',
                             style: kProductDescHeader,
                           ),
-                          Container(
-                            height: 32,
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            constraints: const BoxConstraints(
-                              minWidth: 1,
-                            ),
-                            decoration: ShapeDecoration(
-                              // color: Color(0xFFFFF7EA),
-                              shape: RoundedRectangleBorder(
-                                side: const BorderSide(
-                                    width: 1, color: Color(0xFFA3A3A3)),
-                                borderRadius: BorderRadius.circular(40),
-                              ),
-                            ),
-                            child: const Row(
-                              children: [
-                                Icon(
-                                  Iconsax.filter,
-                                  size: 16,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  'Filter',
-                                  style: kProductDesc,
-                                ),
-                              ],
-                            ),
-                          )
+                          CustomFliterBtn()
                         ],
                       ),
                       const SizedBox(height: 16),
