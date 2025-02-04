@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:snad_box/services/api_service.dart';
 import 'package:snad_box/utils/constants.dart';
+import 'package:snad_box/views/pages/stores/create_store_screen.dart';
 import 'package:snad_box/views/pages/stores/store_details_screen.dart';
 import 'package:snad_box/widgets/hero_card_tile.dart';
 
@@ -22,14 +23,23 @@ class _StoresScreenState extends State<StoresScreen> {
       backgroundColor: kBgcolor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               'Stores',
               style: kPageHeader,
             ),
-            CreateStoreBtn(),
+            CreateStoreBtn(
+              ontap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CreateStoreScreen(),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -83,27 +93,32 @@ class _StoresScreenState extends State<StoresScreen> {
 }
 
 class CreateStoreBtn extends StatelessWidget {
+  final VoidCallback ontap;
   const CreateStoreBtn({
     super.key,
+    required this.ontap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 30,
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-      constraints: const BoxConstraints(
-        minWidth: 1,
-        maxWidth: double.infinity,
-      ),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(900)),
-        color: kButtonColor,
-      ),
-      alignment: Alignment.center,
-      child: const Text(
-        'Create Store',
-        style: kFormLabelText,
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        height: 30,
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
+        constraints: const BoxConstraints(
+          minWidth: 1,
+          maxWidth: double.infinity,
+        ),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(900)),
+          color: kButtonColor,
+        ),
+        alignment: Alignment.center,
+        child: const Text(
+          'Create Store',
+          style: kFormLabelText,
+        ),
       ),
     );
   }
