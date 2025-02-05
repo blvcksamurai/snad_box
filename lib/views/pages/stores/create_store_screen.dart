@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:snad_box/models/create_store_model.dart';
 import 'package:snad_box/utils/constants.dart';
+import 'package:snad_box/views/pages/stores/store_steps/customize_store.dart';
 import 'package:snad_box/views/pages/stores/store_steps/store_details.dart';
 import 'package:snad_box/views/pages/stores/store_steps/store_name.dart';
 import 'package:snad_box/widgets/custom_btn.dart';
@@ -58,7 +59,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
       case 1:
         return const CreateStoreDetails();
       case 2:
-        return const Text('Step3');
+        return const CreateCustomizeStore();
       case 3:
         return const Text('Step4');
       default:

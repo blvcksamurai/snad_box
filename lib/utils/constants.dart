@@ -302,6 +302,13 @@ const kProfileDetails = TextStyle(
   fontWeight: FontWeight.w500,
   height: 1.33,
 );
+
+const kCustomizeHint = TextStyle(
+  color: Color(0xFF7D7D7D),
+  fontSize: 16,
+  fontWeight: FontWeight.w500,
+  height: 1.50,
+);
 // const kTextFieldInput = InputDecoration(
 //     filled: true,
 //     fillColor: Colors.transparent,
