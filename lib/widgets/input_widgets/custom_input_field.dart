@@ -32,7 +32,7 @@ class CustomInputField extends StatelessWidget {
       onChanged: onchanged,
       cursorColor: kButtonColor,
       style: const TextStyle(
-          fontSize: 18.0, fontWeight: FontWeight.w300, color: Colors.black),
+          fontSize: 16.0, fontWeight: FontWeight.w500, color: Colors.black),
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         focusColor: kButtonColor,
@@ -40,7 +40,7 @@ class CustomInputField extends StatelessWidget {
         fillColor: kformColor,
         hintStyle: kHintText,
         contentPadding: EdgeInsets.symmetric(
-            vertical: searchInput ? 10.0 : 18.0, horizontal: 16.0),
+            vertical: searchInput ? 10.0 : 14.0, horizontal: 16.0),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(16),

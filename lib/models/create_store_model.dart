@@ -18,19 +18,19 @@ class CreateStoreBrain {
         step: '1',
         subtext:
             'Give your store a name that is easy to remember by your customers!',
-        btnContent: 'Next-Store Details'),
+        btnContent: 'Next - Store Details'),
     StoreDetails(
         title: 'Store Details',
         step: '2',
         subtext:
             'Give more details to your store to allow for easy categorization!',
-        btnContent: 'Next-Customization'),
+        btnContent: 'Next - Customization'),
     StoreDetails(
         title: 'Customize Store',
         step: '3',
         subtext:
             'Give more details to your store to allow for easy categorization!',
-        btnContent: 'Next-Your First Product'),
+        btnContent: 'Next - Your First Product'),
     StoreDetails(
         title: 'Add Your First Product',
         step: '4',

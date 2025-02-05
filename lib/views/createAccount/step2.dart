@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
 import 'package:snad_box/routes/routes.dart';
-import 'package:snad_box/views/createAccount/step3.dart';
 
 import '../../utils/constants.dart';
 import '../../widgets/custom_btn.dart';
@@ -92,7 +91,10 @@ class _StepTwoState extends State<StepTwo> {
                             hintText: 'Search for your $searchHint',
                             controller: searchController,
                             onchanged: filterItems,
-                            prefixIcon: const Icon(Iconsax.search_normal_1),
+                            prefixIcon: const Icon(
+                              Iconsax.search_normal_1,
+                              color: Color(0xFF7D7D7D),
+                            ),
                           ),
                         ],
                       ),
